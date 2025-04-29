@@ -4,7 +4,8 @@
   "description": "Proyecto final Desarrollo de aplicativos 2025",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js"
   },
   "keywords": [],
   "author": "Ignacio Perez",
