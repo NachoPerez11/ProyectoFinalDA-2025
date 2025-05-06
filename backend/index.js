@@ -1,6 +1,11 @@
-console.log("Hello from the backend!\n");
-for (let i = 0; i <= 10; i++) {
-    //console.log('5 x ', i, ' = ', 5 * i);		
-    console.log(`5 x ${i} = ${5*i}`);
-}
-console.log("\nThis is a message from the backend.");
+import express from 'express';
+import { controllers } from './controllers/controllers.js';
+
+const app = express();
+
+controllers(app);
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
