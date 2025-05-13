@@ -1,3 +1,5 @@
+# CREDENCIALES VÁLIDAS
+# TIPOS Y VALORES CORRECTOS
 POST http://localhost:3000/login
 Accept: application/json
 Content-Type: application/json
@@ -9,7 +11,22 @@ Content-Type: application/json
 
 ###
 
-# MAL LA CONTRASEÑA
+# ARGUMENTOS INVÁLIDOS
+# ERRORES DE TIPO O FALTA DE CREDENCIAL/ES
+POST http://localhost:3000/login
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": 1234 
+}
+
+###
+
+# CREDENCIALES INVÁLIDAS
+# TIPOS CORRECTOS
+# VALORES INCORRECTOS
 POST http://localhost:3000/login
 Accept: application/json
 Content-Type: application/json
