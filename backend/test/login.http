@@ -9,11 +9,12 @@ Content-Type: application/json
 
 ###
 
+# MAL LA CONTRASEÑA
 POST http://localhost:3000/login
 Accept: application/json
 Content-Type: application/json
 
 {
     "username": "admin",
-    "password": "1234"
+    "password": "123"
 }

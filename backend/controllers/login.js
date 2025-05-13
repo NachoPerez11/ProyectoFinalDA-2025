@@ -1,11 +1,6 @@
-import { loginService } from '../services/loginService.js';
+import { LoginService } from '../services/loginService.js';
 
 export function login(app) {
-    app.post('/login', (req, res) => {
-        const result = loginService(
-            req.body?.username, // ? Si existe body, enviame username
-            req.body?.password // ? Si existe body, enviame password
-        );
-        res.send(result);
-    });
+    app.post('/login',
+    async(req, res) => res.send(await LoginService.login(req.body)))
 }

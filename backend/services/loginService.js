@@ -1,20 +1,25 @@
-export function loginService(username, password) {
-    if(!username || !password) {
-        return {
-            error: 'Argumentos inválidos'
-        };
-    }    
-    if(username !== 'admin')
-        return {
-            error: 'Argumentos inválidos'
-        };
-        
-    if(password !== "1234")
-        return {
-            error: 'Argumentos inválidos'
-        };
-    return {
+export class LoginService{
+    static async login(credentials) {
+        if(!credentials || !credentials.username || !credentials.password
+        || typeof credentials.username !== 'string' || typeof credentials.password !== 'string') {
+            return {
+                error: 'Argumentos inválidos'
+            };
+        }
 
-        token:'Token de acceso'
-    };
+        if(credentials.username !== 'admin')
+            return {
+                error: 'Argumentos inválidos'
+            };
+            
+        if(credentials.password !== "1234")
+            return {
+                error: 'Argumentos inválidos'
+            };
+        
+        return {
+            token:'Token de acceso'
+            };
+    }
 }
+
