@@ -5,12 +5,15 @@ import { logMiddleware } from './middlewares/log_middleware.js';
 
 const app = express();
 
-app.use(express.json()); // Middleware para parsear el cuerpo de las peticiones como JSON
-app.use(logMiddleware);
+const router = express.Router();
+app.use('/api' , router);
 
-controllers(app);
 
-app.use(errorHandlerMiddleware);
+router.use(express.json()); // Middleware para parsear el cuerpo de las peticiones como JSON
+router.use(logMiddleware); //Middleware para log
+
+controllers(router);
+router.use(errorHandlerMiddleware);
 
 const PORT = 3000;
 app.listen(PORT, () => {

@@ -11,6 +11,19 @@ Content-Type: application/json
 
 ###
 
+# CREDENCIALES VÁLIDAS
+# TIPOS Y VALORES CORRECTOS
+POST http://localhost:3000/api/login
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "1234"
+}
+
+###
+
 # ARGUMENTOS INVÁLIDOS
 # ERRORES DE TIPO O FALTA DE CREDENCIAL/ES
 POST http://localhost:3000/login
