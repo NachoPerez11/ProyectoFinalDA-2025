@@ -13,7 +13,7 @@ Content-Type: application/json
 
 # ARGUMENTOS INVÁLIDOS
 # ERRORES DE TIPO O FALTA DE CREDENCIAL/ES
-POST http://localhost:3000/login
+POST http://localhost:3000/api/login
 Accept: application/json
 Content-Type: application/json
 
@@ -27,7 +27,7 @@ Content-Type: application/json
 # CREDENCIALES INVÁLIDAS
 # TIPOS CORRECTOS
 # VALORES INCORRECTOS
-POST http://localhost:3000/login
+POST http://localhost:3000/api/login
 Accept: application/json
 Content-Type: application/json
 
