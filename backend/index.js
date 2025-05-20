@@ -2,6 +2,10 @@ import express from 'express';
 import { controllers } from './controllers/controllers.js';
 import { errorHandlerMiddleware } from './middlewares/error_handler_middleware.js';
 import { logMiddleware } from './middlewares/log_middleware.js';
+import { addDependency } from './libs/dependencies.js';
+import { UserService } from './services/userService.js';
+import { LoginService } from './services/loginService.js';
+import { UserMockup } from  './mockups/user.js';
 
 const app = express();
 
@@ -13,7 +17,12 @@ router.use(express.json()); // Middleware para parsear el cuerpo de las peticion
 router.use(logMiddleware); //Middleware para log
 
 controllers(router);
+
 router.use(errorHandlerMiddleware);
+
+addDependency('UserService', UserService);
+addDependency('LoginService', LoginService);
+addDependency('UserModel', UserMockup);
 
 const PORT = 3000;
 app.listen(PORT, () => {
