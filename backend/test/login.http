@@ -1,5 +1,3 @@
-# CREDENCIALES VÁLIDAS
-# TIPOS Y VALORES CORRECTOS
 POST http://localhost:3000/api/login
 Accept: application/json
 Content-Type: application/json
@@ -11,27 +9,34 @@ Content-Type: application/json
 
 ###
 
-# ARGUMENTOS INVÁLIDOS
-# ERRORES DE TIPO O FALTA DE CREDENCIAL/ES
 POST http://localhost:3000/api/login
 Accept: application/json
 Content-Type: application/json
 
 {
     "username": "admin",
-    "password": 1234 
+    "password": "incorrecta"
+}
+
+
+###
+
+POST http://localhost:3000/api/login
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "operator",
+    "password": "12345" 
 }
 
 ###
 
-# CREDENCIALES INVÁLIDAS
-# TIPOS CORRECTOS
-# VALORES INCORRECTOS
 POST http://localhost:3000/api/login
 Accept: application/json
 Content-Type: application/json
 
 {
-    "username": "admin",
-    "password": "123"
+    "username": "operator",
+    "password": "incorrecta"
 }
