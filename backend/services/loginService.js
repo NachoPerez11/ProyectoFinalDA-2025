@@ -2,6 +2,8 @@ import { InvalidArgumentException } from "../exceptions/invalid_argument_excepti
 import { InvalidCredentialsException } from "../exceptions/invalid_credential_exception.js";
 import { getDependency } from "../libs/dependencies.js";
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import config from "../configlocal.js";
 
 export class LoginService{
     static async login(credentials) {
@@ -16,17 +18,24 @@ export class LoginService{
 
         if(credentials.password !== user.password) throw new InvalidCredentialsException();
 
+        if(!(await bcrypt.compare(credentials.password, user.hashedPassword))) throw new InvalidCredentialsException;
 
-        // NO SE USA
-        //const hash = bcrypt.hashSync("1234", 2);
-        //console.log(hash);
+        const token = jwt.sign(
+            {
+                UserId: user.id,
+                username: user.username,
+                fullName: user.name
+            },
+            config.jwtKey,
+            {
+                expiresIn: '1h' //Expira en 1 hora el token
+            }
+        );
 
-        if(!(await bcrypt.compare(credentials.password, user.hashedPassword)))
-            throw new InvalidCredentialsException;
-        
-        return {
-            token: 'Token de acceso'
-        };
+        return { token };
     }
 }
 
+// NO SE USA
+//const hash = bcrypt.hashSync("1234", 2);
+//console.log(hash);

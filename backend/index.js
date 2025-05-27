@@ -6,6 +6,12 @@ import { addDependency } from './libs/dependencies.js';
 import { UserService } from './services/userService.js';
 import { LoginService } from './services/loginService.js';
 import { UserMockup } from  './mockups/user.js';
+import config from './config.js';
+
+if (!config.jwtKey){
+    console.error('No se ha definido un jwtKey en la configuracion. Por favor cree un archivo configlocal.js que contenga jwtKey.');
+    process.disconnect();
+}
 
 const app = express();
 
@@ -24,7 +30,6 @@ addDependency('UserService', UserService);
 addDependency('LoginService', LoginService);
 addDependency('UserModel', UserMockup);
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+app.listen(config.port, () => {
+    console.log(`Servidor corriendo en http://localhost:${config.port}`);
 });
