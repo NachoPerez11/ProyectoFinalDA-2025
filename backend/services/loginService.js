@@ -7,6 +7,9 @@ import config from "../configlocal.js";
 
 export class LoginService{
     static async login(credentials) {
+        //const hash = await bcrypt.hash('12345', 2);
+        //console.log(`Hash: ${hash}`);
+
         if(!credentials || !credentials.username || !credentials.password
         || typeof credentials.username !== 'string' || typeof credentials.password !== 'string') {
             throw new InvalidArgumentException();
@@ -24,7 +27,8 @@ export class LoginService{
             {
                 UserId: user.id,
                 username: user.username,
-                fullName: user.name
+                fullName: user.name,
+                roles: user.roles
             },
             config.jwtKey,
             {

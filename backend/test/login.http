@@ -20,6 +20,7 @@ Content-Type: application/json
 
 
 ###
+// No funciona con otro usuario (Error a corregir)
 
 POST http://localhost:3000/api/login
 Accept: application/json

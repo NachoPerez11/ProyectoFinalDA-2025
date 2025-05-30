@@ -10,7 +10,7 @@ import config from './config.js';
 
 if (!config.jwtKey){
     console.error('No se ha definido un jwtKey en la configuracion. Por favor cree un archivo configlocal.js que contenga jwtKey.');
-    process.disconnect();
+    process.exit(1);
 }
 
 const app = express();
