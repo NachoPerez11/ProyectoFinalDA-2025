@@ -8,7 +8,7 @@ export function logMiddleware(req, res, next){
     }
     const bodyText = JSON.stringify(body);
     
-    console.log(`${date} - ${ip} - ${request} - ${bodyText}`);
+    //console.log(`${date} - ${ip} - ${request} - ${bodyText}`);
     //         ('FECHA  / IP (QUIEN HACE LA PETICIÓN) / PETICIÓN')
     next();
 }

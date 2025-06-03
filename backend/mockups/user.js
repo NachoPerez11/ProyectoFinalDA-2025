@@ -17,7 +17,7 @@ export class UserMockup {
             name: 'Operator',
             email: 'operator@fake.com',
             roles: ['operator']
-        },
+        }
     ];
 
     static async getSingleOrNullByUsername(username) {

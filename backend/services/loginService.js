@@ -7,9 +7,6 @@ import config from "../configlocal.js";
 
 export class LoginService{
     static async login(credentials) {
-        //const hash = await bcrypt.hash('12345', 2);
-        //console.log(`Hash: ${hash}`);
-
         if(!credentials || !credentials.username || !credentials.password
         || typeof credentials.username !== 'string' || typeof credentials.password !== 'string') {
             throw new InvalidArgumentException();
@@ -21,13 +18,13 @@ export class LoginService{
 
         if(credentials.password !== user.password) throw new InvalidCredentialsException();
 
-        if(!(await bcrypt.compare(credentials.password, user.hashedPassword))) throw new InvalidCredentialsException;
+        if(!(await bcrypt.compare(credentials.password, user.hashedPassword))) throw new InvalidCredentialsException();
 
         const token = jwt.sign(
             {
                 UserId: user.id,
                 username: user.username,
-                fullName: user.name,
+                fullName: user.fullName,
                 roles: user.roles
             },
             config.jwtKey,
