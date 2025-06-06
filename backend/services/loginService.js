@@ -13,10 +13,14 @@ export class LoginService{
         }
 
         const UserService = getDependency('UserService');
-        const user = await UserService.getSingleOrNullByUsername(credentials.username);
+        const users = await UserService.get();
+        const user = users.find(u => u.username === credentials.username);
+        console.log(user);
+        //console.log("Usuario: ", user.username, "Contraseña: ", user.hashedPassword);
         if(!user) throw new InvalidCredentialsException();
 
-        if(credentials.password !== user.password) throw new InvalidCredentialsException();
+        console.log(credentials.password);
+        console.log(user.hashedPassword);
 
         if(!(await bcrypt.compare(credentials.password, user.hashedPassword))) throw new InvalidCredentialsException();
 
