@@ -5,7 +5,7 @@
 
 var config = {
     jwtKey: '1234', // Aumentar complejidad
-    dbConection: 'mongodb://localhost:27017'
+    dbConnection: 'mongodb://localhost:27017/ProyectoFinalDA-2025'
 }
 
 export default config;

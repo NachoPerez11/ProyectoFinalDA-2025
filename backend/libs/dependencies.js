@@ -14,3 +14,7 @@ export function addDependency(name, dependency) {
 
     dependencies[name] = dependency;
 }
+
+export function getDependencies() {
+    return dependencies;
+}

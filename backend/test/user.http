@@ -13,4 +13,3 @@ GET http://localhost:3000/api/user
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJmdWxsTmFtZSI6IkFkbWluIiwiaWF0IjoxNzQ4NjQ0MzE3LCJleHAiOjE3NDg2NDc5MTd9.wz95kp-yb9BeuKXoe9xnMTfcTN6q15pXZ6c1ssg1MAY
 Content-Type: application/json
-

@@ -14,10 +14,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "username": "admin",
-    "password": "incorrecta"
+    "username": "operator",
+    "password": "12345" 
 }
-
 
 ###
 
@@ -26,8 +25,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "username": "operator",
-    "password": "12345" 
+    "username": "admin",
+    "password": "incorrecta"
 }
 
 ###
