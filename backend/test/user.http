@@ -1,15 +1,29 @@
-POST http://localhost:3000/api/login
-Accept: application/json
-Content-Type: application/json
-
-{
-    "username": "operator",
-    "password": "12345"
-}
-
-###
+### GET USERS
 
 GET http://localhost:3000/api/user
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJmdWxsTmFtZSI6IkFkbWluIiwiaWF0IjoxNzQ4NjQ0MzE3LCJleHAiOjE3NDg2NDc5MTd9.wz95kp-yb9BeuKXoe9xnMTfcTN6q15pXZ6c1ssg1MAY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2ODNmNmQ1OWNjMGVhNmFjZWY3MjVmZDIiLCJ1c2VybmFtZSI6ImFkbWluIiwiZnVsbE5hbWUiOiJBZG1pbiIsInJvbGVzIjpbImFkbWluIl0sImlhdCI6MTc0OTU5NTUzNiwiZXhwIjoxNzQ5NjEzNTM2fQ.zm7GvGo4LQNAd6x8BYn9sXbjm0TdirIR6p1swSmF6PQ
+Content-Type: application/json
+
+### CREATE USER
+
+POST http://localhost:3000/api/user
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2ODNmNmQ1OWNjMGVhNmFjZWY3MjVmZDIiLCJ1c2VybmFtZSI6ImFkbWluIiwiZnVsbE5hbWUiOiJBZG1pbiIsInJvbGVzIjpbImFkbWluIl0sImlhdCI6MTc0OTU5NTUzNiwiZXhwIjoxNzQ5NjEzNTM2fQ.zm7GvGo4LQNAd6x8BYn9sXbjm0TdirIR6p1swSmF6PQ
+Content-Type: application/json
+
+{
+  "username": "operator02",
+  "password": "12345",
+  "fullName": "Operator",
+  "roles": ["operator"],
+  "email": "operator@fake.com"
+}
+
+
+### DELETE USER
+
+DELETE http://localhost:3000/api/user/7e9ea56a-2e10-49b0-9d42-ae2bfec4fedf
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2ODNmNmQ1OWNjMGVhNmFjZWY3MjVmZDIiLCJ1c2VybmFtZSI6ImFkbWluIiwiZnVsbE5hbWUiOiJBZG1pbiIsInJvbGVzIjpbImFkbWluIl0sImlhdCI6MTc0OTU5NTUzNiwiZXhwIjoxNzQ5NjEzNTM2fQ.zm7GvGo4LQNAd6x8BYn9sXbjm0TdirIR6p1swSmF6PQ
 Content-Type: application/json

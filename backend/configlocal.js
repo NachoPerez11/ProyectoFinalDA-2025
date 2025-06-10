@@ -4,7 +4,7 @@
 // ES IMPORTANTE: Este archivo no debe ser subido al repositorio, ya que contiene información sensible. 
 
 var config = {
-    jwtKey: '1234', // Aumentar complejidad
+    jwtKey: '3MgO=03+>193',
     dbConnection: 'mongodb://localhost:27017/ProyectoFinalDA-2025'
 }
 

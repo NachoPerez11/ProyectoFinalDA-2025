@@ -1,7 +1,7 @@
 import express from 'express';
 import config from './config.js';
 import mongoose from 'mongoose';
-import configureMiddleware from './configure_middleware.js';
+import configureMiddleware from './middlewares/configure_middleware.js';
 import configureDependencies from './configure_dependencies.js';
 
 if (!config.jwtKey){

@@ -1,3 +1,5 @@
+### LOGIN AS ADMIN
+
 POST http://localhost:3000/api/login
 Accept: application/json
 Content-Type: application/json
@@ -7,7 +9,7 @@ Content-Type: application/json
     "password": "1234"
 }
 
-###
+### LOGIN AS OPERATOR
 
 POST http://localhost:3000/api/login
 Accept: application/json
@@ -15,27 +17,5 @@ Content-Type: application/json
 
 {
     "username": "operator",
-    "password": "12345" 
-}
-
-###
-
-POST http://localhost:3000/api/login
-Accept: application/json
-Content-Type: application/json
-
-{
-    "username": "admin",
-    "password": "incorrecta"
-}
-
-###
-
-POST http://localhost:3000/api/login
-Accept: application/json
-Content-Type: application/json
-
-{
-    "username": "operator",
-    "password": "incorrecta"
+    "password": "12345"
 }
