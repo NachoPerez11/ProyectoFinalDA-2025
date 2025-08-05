@@ -4,9 +4,9 @@ import TextField from './TextField.jsx';
 import { useModal } from './Modal.jsx';
 
 export default function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [open, openModal] = useModal();
+  const [username, setUsername] = useState('1');
+  const [password, setPassword] = useState('2');
+  const {open: openModal} = useModal();
 
   function submit() {
     openModal('Ingresando');

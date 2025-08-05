@@ -17,10 +17,26 @@
   align-items: center;
 }
 
+.modal-head{
+  background-color: aqua;
+  border-radius: 1em 1em 0 0;
+  padding: .5em 2em;
+}
+
+.modal-title{
+  font-weight: bold;
+  font-size: 140%;
+}
+
 .modal-body{
   background-color: blue;
   color: white;
   padding: 2em;
   border-radius: 1em;
   box-shadow: .5em .5em 2em darkblue;
+}
+
+.modal-foot{
+  text-align: center;
+  background-color: grey;
 }
