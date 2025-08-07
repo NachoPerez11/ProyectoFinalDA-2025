@@ -5,12 +5,12 @@ import { useModal } from './Modal.jsx';
 
 export default function Login() {
   const [username, setUsername] = useState('1');
-  const [password, setPassword] = useState('2');
+  const [password, setPassword] = useState('1');
   const {open: openModal} = useModal();
 
   function submit() {
-    openModal('Ingresando');
-    setTimeout(() => ModalProvider.close(), 2500);
+    openModal('Ingresando...');
+    setTimeout(() => close(), 2500);
   }
 
   return (

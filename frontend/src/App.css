@@ -18,7 +18,7 @@
 }
 
 .modal-head{
-  background-color: aqua;
+  background-color: gray;
   border-radius: 1em 1em 0 0;
   padding: .5em 2em;
 }
@@ -29,11 +29,11 @@
 }
 
 .modal-body{
-  background-color: blue;
+  background-color: gray;
   color: white;
   padding: 2em;
   border-radius: 1em;
-  box-shadow: .5em .5em 2em darkblue;
+  box-shadow: .5em .5em 2em ;
 }
 
 .modal-foot{

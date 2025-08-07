@@ -1,13 +1,9 @@
 export default function Menu() {
   return (
-    <nav
-      className="menu"
-    >
-      <ul>
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/about">Acerca de</a></li>
-        <li><a href="/contact">Contacto</a></li>
-      </ul>
+    <nav className="menu">
+      <ul><a href="/">Inicio</a></ul>
+      <ul><a href="/about">Acerca de</a></ul>
+      <ul><a href="/contact">Contacto</a></ul>
     </nav>
   );
 }
