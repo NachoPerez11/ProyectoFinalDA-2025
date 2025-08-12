@@ -3,11 +3,13 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background: linear-gradient(145deg, #27F5E0 0%, #27A3F5 100%);
+  color: white;
+  border-radius: 12px;
 }
 
 .modal-background{
   position: fixed;
-  background-color: rgba(128, 128, 128, 0.5);
   top: 0;
   left: 0;
   width: 100vw;
@@ -18,7 +20,6 @@
 }
 
 .modal-head{
-  background-color: gray;
   border-radius: 1em 1em 0 0;
   padding: .5em 2em;
 }
@@ -29,8 +30,6 @@
 }
 
 .modal-body{
-  background-color: gray;
-  color: white;
   padding: 2em;
   border-radius: 1em;
   box-shadow: .5em .5em 2em ;
@@ -38,5 +37,4 @@
 
 .modal-foot{
   text-align: center;
-  background-color: grey;
 }

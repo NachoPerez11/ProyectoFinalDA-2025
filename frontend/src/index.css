@@ -7,31 +7,18 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
 
-
-
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: black;
-    background-color: dodgerblue;
-  }
-  a:hover {
-    color: blueviolet;
-  }
-  button {
-    background-color: lightskyblue;
-  }
+  background-color: lightblue;
+  color: white;
+  
 }
 
 /* Estilos generales para toda la página */
 body {
-  background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
-  color: black;
   font-family: 'Segoe UI', system-ui, sans-serif;
   padding: 2em;
   box-sizing: border-box;
+  margin: 0;
 }
 
 header, nav, main, footer {
@@ -41,73 +28,75 @@ header, nav, main, footer {
 header {
   text-align: center;
   padding-bottom: 1em;
-  border-bottom: 2px solid #b0c4de;
 }
 
 nav {
   display: flex;
   gap: 1.5em;
+  width: 70%;
   justify-content: center;
-  margin-bottom: 2em;
+  margin: 1em auto;
+  background-color: #1e90ff;
+  border-radius: 12px;
 }
 
 nav a {
-  text-decoration: none;
-  color: #1e90ff;
   padding: 0.5em 1em;
+  font-weight: 500;
+  font-size: 1.2em;
   border-radius: 4px;
-  transition: background 0.2s, color 0.2s;
+  color: white;
+  text-decoration: underline 2px;
+  transition: background-color 3s ease-in, color 1s ease;
 }
 
 nav a:hover {
-  background: #b0c4de;
-  color: #222;
+  color: #093d98;
+  background: linear-gradient(145deg, #27F5E0 0%, #1e90ff 100%);
+  box-shadow: 0 2px 4px black;
+  transition: background-color 3s ease, color 3s ease;
 }
 
 main {
   max-width: 800px;
   margin: 0 auto;
-  background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(30,144,255,0.08);
+  box-shadow: 0 2px 8px black;
   padding: 2em;
 }
 
 footer {
   text-align: center;
-  color: #888;
   font-size: 1em;
   padding: 1em 0;
-  border-top: 1px solid #b0c4de;
-  background: #f8faff;
 }
 
 h1, h2, h3 {
-  color: #1e90ff;
-  margin-top: 0;
+  background-color: #093d98;
+  border-radius: 12px;
+  padding: 0.5em;
+  width: fit-content;
+  margin: 1em auto;
 }
 
 input, textarea, select {
   display: block;
-  width: 100%;
+  margin: auto;
+  width: 80%;
   margin-bottom: 1em;
-  border: 1px solid #b0c4de;
   border-radius: 6px;
   padding: 0.8em;
   font-size: 1em;
-  background: #f0f8ff;
-  transition: border-color 0.2s;
 }
-
 input:focus, textarea:focus, select:focus {
-  border-color: #1e90ff;
   outline: none;
 }
 
 button {
   background: #1e90ff;
-  color: #fff;
+  color: white;
   border: none;
+  box-shadow: 3px 3px 5px black;
   border-radius: 8px;
   padding: 0.8em 1.5em;
   font-size: 1em;
@@ -116,13 +105,12 @@ button {
 }
 
 button:hover {
-  background: #4682b4;
+  background: #093d98;
 }
 
 label {
   display: block;
   margin-bottom: 0.5em;
-  color: #222;
   font-weight: 600;
   font-size: 1.1em;
 }
