@@ -21,6 +21,14 @@ body {
   margin: 0;
 }
 
+head{
+  
+}
+
+img{
+  
+}
+
 header, nav, main, footer {
   margin-bottom: 2em;
 }
@@ -32,10 +40,10 @@ header {
 
 nav {
   display: flex;
-  gap: 1.5em;
-  width: 70%;
+  width: 60%;
   justify-content: center;
   margin: 1em auto;
+  padding: 0;
   background-color: #1e90ff;
   border-radius: 12px;
 }
@@ -47,14 +55,11 @@ nav a {
   border-radius: 4px;
   color: white;
   text-decoration: underline 2px;
-  transition: background-color 3s ease-in, color 1s ease;
+  transition:  color 0.3s ease;
 }
 
 nav a:hover {
-  color: #093d98;
-  background: linear-gradient(145deg, #27F5E0 0%, #1e90ff 100%);
-  box-shadow: 0 2px 4px black;
-  transition: background-color 3s ease, color 3s ease;
+  color: #120ed3;
 }
 
 main {
@@ -72,7 +77,6 @@ footer {
 }
 
 h1, h2, h3 {
-  background-color: #093d98;
   border-radius: 12px;
   padding: 0.5em;
   width: fit-content;
@@ -93,7 +97,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 button {
-  background: #1e90ff;
+  background: #093d98;
   color: white;
   border: none;
   box-shadow: 3px 3px 5px black;
@@ -102,10 +106,11 @@ button {
   font-size: 1em;
   font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background: #093d98;
+  background: #0144fa;
 }
 
 label {

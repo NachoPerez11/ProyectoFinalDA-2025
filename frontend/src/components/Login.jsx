@@ -2,15 +2,20 @@ import { useState } from 'react';
 import Form from './Form.jsx';
 import TextField from './TextField.jsx';
 import { useModal } from './Modal.jsx';
+import { useSnackbar } from './Snackbar.jsx'
 
 export default function Login() {
   const [username, setUsername] = useState('1');
   const [password, setPassword] = useState('1');
   const {open: openModal} = useModal();
+  const snackbar = useSnackbar();
 
   function submit() {
-    openModal('Ingresando...');
-    setTimeout(() => close(), 2500);
+    //openModal('Ingresando...');
+    //setTimeout(() => close(), 2500);
+    snackbar.enqueue('Ingresando', {variant: 'info', timeout: '3500'});
+    snackbar.enqueue('Ingresó correctamente',{variant: 'success', timeout: '2000'});
+    snackbar.enqueue('Error', {variant: 'error', timeout: '4000'});
   }
 
   return (
