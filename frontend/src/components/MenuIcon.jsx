@@ -7,6 +7,6 @@ export default function MenuIcon({
   }
 
   return (
-    <img src="./lista.png" alt="Menú" onClick={onClickHandler}/>
+    <img src="../img/menu.png" alt="Menú" onClick={onClickHandler}/>
   );
 }

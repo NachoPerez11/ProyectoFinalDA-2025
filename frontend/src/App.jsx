@@ -10,10 +10,9 @@ export default function App() {
   return (
     <SnackbarProvider>
       <ModalProvider>
-      <Head setMenuShowed={setMenuShowed}/>
-      <Body menuShowed={menuShowed}/>
+        <Head setMenuShowed={setMenuShowed}/>
+        <Body menuShowed={menuShowed}/>
       </ModalProvider>
     </SnackbarProvider>
-    
   )
 }

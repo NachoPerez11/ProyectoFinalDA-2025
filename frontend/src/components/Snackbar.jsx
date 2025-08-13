@@ -1,4 +1,5 @@
 import { createContext, useContext, useRef, useState } from "react";
+import './Snackbar.css';
 
 const SnackbarContext = createContext(null);
 
@@ -7,7 +8,7 @@ export default useSnackbar;
 
 const defaultItem = {
     message: 'Sin mensaje',
-    variant: '',
+    variant: 'info',
     timeout: '3500'
 }
 
@@ -16,26 +17,32 @@ export const SnackbarProvider = ({ children }) => {
     const lastId = useRef(0);
         
     function hideItemById(id){
-        //setItems(items.filter(item => item.id !== id));
         setItems(items => items.map(item => item.id !== id? 
-            item:{
+            item:
+            {
                 ...item,
-                className: ' hide'
-            }))
+                className: (item.className || '') + ' hide',
+            }
+        ));
+
+        setTimeout(() => deleteItemById(id), 400);
+    }
+
+    function deleteItemById(id){
+        setItems(items => items.filter(item => item.id !== id));
     }
 
     function enqueue(message, variant){
         let item = {...defaultItem};
         if(typeof message === 'string'){
             item.message = message;
-        }
-        else{
+        } else{
             item = { ...message};
         }
+
         if( typeof variant === 'string'){
             item.variant = variant;
-        }
-        else if (typeof variant === 'object'){
+        } else if (typeof variant === 'object'){
             item = { ...item, ...variant};
         }
 
@@ -50,9 +57,12 @@ export const SnackbarProvider = ({ children }) => {
 
     return <SnackbarContext.Provider value = {{enqueue}}>
         <ul className="snackbar-container">
-            {items.map(item => <li key={item.id} 
-                className={'snackbar-item' + (item.className || '') + ' ' + item.variant}
-                onClick={() => hideItemById(item.id)}>{item.message}</li>)}
+            {items.map(item => 
+            <li 
+            key={item.id} 
+            className={'snackbar-item' + (item.className || '') + ' ' + (item.variant || '')}
+            onClick={() => hideItemById(item.id)}
+            >{item.message}</li>)}
         </ul>
         { children }
     </SnackbarContext.Provider>;

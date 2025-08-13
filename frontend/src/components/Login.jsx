@@ -12,10 +12,10 @@ export default function Login() {
 
   function submit() {
     //openModal('Ingresando...');
-    //setTimeout(() => close(), 2500);
-    snackbar.enqueue('Ingresando', {variant: 'info', timeout: '3500'});
-    snackbar.enqueue('Ingresó correctamente',{variant: 'success', timeout: '2000'});
-    snackbar.enqueue('Error', {variant: 'error', timeout: '4000'});
+    snackbar.enqueue('Ingresando', {variant: 'info', timeout: '4000'});
+    snackbar.enqueue('Ingresó correctamente',{variant: 'success', timeout: '5000'});
+    snackbar.enqueue('Error', {variant: 'error', timeout: '6000'});
+    //setTimeout(() => modal.close(), 10000);
   }
 
   return (

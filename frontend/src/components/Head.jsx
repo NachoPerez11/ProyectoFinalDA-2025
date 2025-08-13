@@ -8,6 +8,7 @@ export default function Head({
       className="head"
       style={{
         display: 'flex',
+        justifyContent: 'center',
       }}
     >
       <MenuIcon
