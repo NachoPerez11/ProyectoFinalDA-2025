@@ -1,6 +1,8 @@
 import Login from './Login.jsx';
+import { useSession } from './Session.jsx';
 
 export default function Content() {
+  const session = useSession();
   return (
     <div
       className="content"
@@ -8,7 +10,7 @@ export default function Content() {
         flexGrow: 1,
       }}
     >
-      <Login />
+      {!session.isLoggedIn ? <Login /> : <div>Bienvenido {session.username}</div>}
     </div>
   );
 }

@@ -15,7 +15,6 @@ export class LoginService{
         const UserService = getDependency('UserService');
         const user = await UserService.getSingleOrNullByUsername(credentials.username);
         if(!user) throw new InvalidCredentialsException();
-
         if(!(await bcrypt.compare(credentials.password, user.hashedPassword))) throw new InvalidCredentialsException();
 
         const token = jwt.sign(
@@ -38,3 +37,4 @@ export class LoginService{
 // NO SE USA
 //const hash = bcrypt.hashSync("1234", 2);
 //console.log(hash);
+
