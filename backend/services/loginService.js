@@ -37,4 +37,3 @@ export class LoginService{
 // NO SE USA
 //const hash = bcrypt.hashSync("1234", 2);
 //console.log(hash);
-

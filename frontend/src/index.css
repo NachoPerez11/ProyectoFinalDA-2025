@@ -21,18 +21,6 @@ body {
   margin: 0;
 }
 
-img{
-  width: 3em;
-  height: 3em;
-  padding: 0;
-  margin: 1em;
-  cursor: pointer;
-  transition: transform 0.4s ease;
-}
-img:hover {
-  transform: scale(1.2);
-}
-
 header, nav, main, footer {
   margin-bottom: 2em;
 }
@@ -48,21 +36,24 @@ nav {
   justify-content: center;
   margin: 1em auto;
   padding: 0;
-  background: linear-gradient(145deg, #093d98 0%, #0144fa 100%);
   border-radius: 12px;
 }
 
 nav a {
   padding: 0.5em 1em;
   font-weight: 500;
-  font-size: 1.2em;
+  font-size: 1.3em;
   border-radius: 4px;
   color: white;
-  text-decoration: underline 2px;
+  text-decoration: none;
 }
 nav a:hover {
-  color: #53f5f7;
+  color: #0144fa;
   transition:  color 0.3s ease;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #0144fa;
+  text-decoration-style: solid;
+  text-decoration-line: underline;
 }
 
 main {

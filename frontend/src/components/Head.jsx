@@ -1,26 +1,10 @@
-import MenuIcon from './MenuIcon.jsx';
+import Menu from "./Menu";
 
-export default function Head({
-  setMenuShowed,
-}) {
+export default function Head() {
   return (
-    <div
-      className="head"
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-      }}
-    >
-      <MenuIcon
-        onClick={() => setMenuShowed(value => !value)}
-      />
-      <h1
-        style={{
-          margin: 0,
-        }}
-      >
-        TUDS - DA - 2025
-      </h1>
+    <div className="head">
+      <h1>TUDS - DA - 2025</h1>
+      <Menu/>
     </div>
   );
 }

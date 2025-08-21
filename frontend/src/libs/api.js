@@ -5,7 +5,6 @@ export async function fetchApi(service, options) {
     options = {...options}; 
     options.headers = {...headers, ...options.headers};
 
-
     if(options.body){
         if (typeof options.body !== 'string') {
             options.body = JSON.stringify(options.body);
@@ -17,6 +16,8 @@ export async function fetchApi(service, options) {
     if(options.json){
         options.headers.Accept = 'application/json';
     }
+
+    options.credentials ||= 'include';
 
     let res = await fetch(`${urlBase}${service}`, options);
 

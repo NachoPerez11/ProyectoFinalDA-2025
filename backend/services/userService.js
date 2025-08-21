@@ -15,30 +15,29 @@ export class UserService {
 
     static async create(user) {
         if (!user.username){
-            throw new InvalidArgumentError('Username is required');
+            throw new InvalidArgumentError('Nombre de usuario requerido');
         }
         
         if(!user.fullName){
-            throw new InvalidArgumentError('Full name is required');
+            throw new InvalidArgumentError('Nombre completo requerido'); 
         }
-
         
         if(!user.roles){
-            throw new InvalidArgumentError('Roles are required');
+            throw new InvalidArgumentError('Roles requeridos');
         }
 
         if(!user.email){
-            throw new InvalidArgumentError('Email is required');
+            throw new InvalidArgumentError('Email requerido');
         }
 
         if(!user.password){
-            throw new InvalidArgumentError('Password is required');
+            throw new InvalidArgumentError('Contraseña requerida');
         }
 
         const UserModel = getDependency('UserModel');
         const existingUser = await UserModel.find({ username: user.username });
         if (existingUser.length > 0) {
-            throw new Error('User already exists');
+            throw new Error('El nombre de usuario ya existe');
         }
 
         if(user.password){
@@ -54,12 +53,12 @@ export class UserService {
 
     static async deleteByUuid(uuid) {
         if (!uuid) {
-            throw new InvalidArgumentError('UUID is required');
+            throw new InvalidArgumentError('UUID requerido');
         }
         const UserModel = getDependency('UserModel');
         const user = await UserModel.findOneAndDelete({ uuid: uuid });
         if (!user) {
-            throw new InvalidArgumentError('User not found');
+            throw new InvalidArgumentError('Usuario no encontrado');
         }
     }
 };

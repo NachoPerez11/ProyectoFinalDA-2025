@@ -19,7 +19,8 @@ mongoose.connect(config.dbConnection).then(() => {
 const app = express();
 
 const router = express.Router();
-app.use('/api' , router);
+
+app.use('/api', router);
 
 configureMiddleware(router);
 configureDependencies();
