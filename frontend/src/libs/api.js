@@ -1,4 +1,5 @@
 export const urlBase = import.meta.env.VITE_API_URL || '/api';  // AGREGAR EN ARCHIVO .gitignore para el trabajo final
+// AGREGAR ARCHIVO .env.local que tenga VITE_API_URL='https://localhost:5173'
 export const headers = {};
 
 export async function fetchApi(service, options) {
