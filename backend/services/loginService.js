@@ -30,7 +30,7 @@ export class LoginService{
             }
         );
 
-        return { token };
+        return { token, roles: user.roles };
     }
 }
 

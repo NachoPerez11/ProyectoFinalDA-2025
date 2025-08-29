@@ -19,6 +19,8 @@ export default function Login() {
       if(data.token) {
         api.headers.Authorization = `Bearer ${data.token}`;
         session.setIsLoggedIn(true);
+        session.setRoles(data.roles);
+
         snackbar.enqueue('Ingresó correctamente',{variant: 'success', timeout: '5000'});
       } else {
         snackbar.enqueue('Error al ingresar', {variant: 'error', timeout: '6000'});

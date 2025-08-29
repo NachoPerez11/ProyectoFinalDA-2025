@@ -1,5 +1,6 @@
 import Login from './Login.jsx';
 import { useSession } from './Session.jsx';
+import Router from './Router.jsx';
 
 export default function Content() {
   const session = useSession();
@@ -11,6 +12,7 @@ export default function Content() {
       }}
     >
       {!session.isLoggedIn ? <Login /> : <div>Bienvenido {session.username}</div>}
+      <Router />
     </div>
   );
 }
