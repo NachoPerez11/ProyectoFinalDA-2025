@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Form from "./Form";
 import TextField from "./TextField"
+import MultiSelectField from "./MultiSelectField";
 
 export default function Usuario() {
   const {uuid} = useParams();
@@ -11,26 +12,29 @@ export default function Usuario() {
   }, [uuid]);
 
   return <Form title="Editar Usuario">
-    <TextField 
-    label="Nombre completo"
-    name="fullName"
-    required={true}
-    value={data.fullName}
-    onChange={e => setData({...data, fullName: e.target.value})}
-    />
-    <TextField 
-    label="Email"
-    name="email"
-    required={true}
-    value={data.email}
-    onChange={e => setData({...data, email: e.target.value})}
-    />
-    <TextField 
-    label="Roles"
-    name="roles"
-    required={true}
-    value={data.roles}
-    onChange={e => setData({...data, roles: e.target.value})}
-    />
-  </Form>
+  <TextField 
+  label="Nombre completo"
+  name="fullName"
+  required={true}
+  value={data.fullName}
+  onChange={e => setData({...data, fullName: e.target.value})}
+  />
+  <TextField 
+  label="Email"
+  name="email"
+  required={true}
+  value={data.email}
+  onChange={e => setData({...data, email: e.target.value})}
+  />
+  <MultiSelectField
+  label="Roles"
+  name="roles"
+  value={data.roles}
+  onChange={newValue => setData({...data, roles: newValue})}
+  options={[
+      { label: "Administrados", value: "admin" },
+      { label: "Operador", value: "operator" }
+  ]}
+  />
+</Form>
 }
