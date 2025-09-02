@@ -10,7 +10,8 @@ export default function Menu() {
         session.isLoggedIn && 
           <>
             {
-              session.roles.includes('admin') && <li><Link to="/usuarios">Usuarios</Link></li>
+              //session.roles.includes('admin') &&  //Si el usuario es admin (Hacer comprobación)
+              <li><Link to="/usuarios">Usuarios</Link></li>
             }
             <li><Link to="#" onClick={() => session.setIsLoggedIn(false)}>Salir</Link></li>
           </>

@@ -18,7 +18,17 @@ export async function fetchApi(service, options) {
         options.headers.Accept = 'application/json';
     }
 
-    options.credentials ||= 'include';
+    let query = '';
+    if(options.query){
+        if(typeof options.query === 'string'){
+            query = options.query;
+        } else {
+            query = new URLSearchParams(options.query).toString();
+        }
+        if(query.length){
+            query = `?${query}`;
+        }
+    }
 
     let res = await fetch(`${urlBase}${service}`, options);
 
@@ -39,6 +49,14 @@ export async function post(service, body, options) {
     return await fetchApi(service, {...options, body, method: 'POST'});
 }
 
+export async function get(service, query, options) {
+    return await fetchApi(service, {...options, method: 'GET', query});
+}
+
 export async function postJson(service, body, options) {
     return await post(service, body, {...options, json: true});
+}
+
+export async function getJson(service, query, options) {
+    return await get(service, query, {...options, json: true});
 }

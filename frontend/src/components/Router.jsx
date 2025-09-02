@@ -9,10 +9,13 @@ import Usuario from './Usuario.jsx';
 export default function Router() {
     return <Routes>
             <Route path="/" element={<Home />} />
+            {sessionStorage.user?.roles?.includes('admin') && <>
+                <Route path="/usuarios" element={<Usuarios />} />
+                <Route path="/usuario" element={<Usuario />} />
+                <Route path="/usuario/:uuid" element={<Usuario />} />
+            </>}
             <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="/usuarios" element={<Usuarios />} />
-            <Route path="/usuario/:id" element={<Usuario />} />
         </Routes>
 }
 

@@ -3,6 +3,7 @@ import config from './config.js';
 import mongoose from 'mongoose';
 import configureMiddleware from './middlewares/configure_middleware.js';
 import configureDependencies from './configure_dependencies.js';
+import bcrypt from 'bcrypt';
 
 if (!config.jwtKey){
     console.error('No se ha definido un jwtKey en la configuracion. Por favor cree un archivo configlocal.js que contenga jwtKey.');

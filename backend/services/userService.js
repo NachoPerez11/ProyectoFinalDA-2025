@@ -7,10 +7,10 @@ export class UserService {
         return await users.findOne({ username: username });
     }
 
-    static async get(){
+    static async get(filter){
         const UserModel = getDependency('UserModel');
         console.log(UserModel.find({}));
-        return await UserModel.find({});
+        return await UserModel.find(filter);
     }
 
     static async create(user) {

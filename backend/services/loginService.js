@@ -30,7 +30,7 @@ export class LoginService{
             }
         );
 
-        return { token, roles: user.roles };
+        return { token, user: { uuid: user.uuid, username: user.username, fullName: user.fullName, roles: user.roles } };
     }
 }
 

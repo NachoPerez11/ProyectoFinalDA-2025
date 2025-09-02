@@ -3,7 +3,8 @@ import {checkForRole} from '../middlewares/authorization_middleware.js';
 
 export function user(app){
     app.get('/user', checkForRole('admin'), async (req, res) => {
-        const users = await UserService.get();
+        const query = req.query;
+        const users = await UserService.get(query);
         const result = users.map(user => ({
             uuid: user.uuid,
             username: user.username,

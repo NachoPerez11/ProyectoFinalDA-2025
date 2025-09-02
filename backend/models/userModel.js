@@ -11,3 +11,26 @@ const userSchema = new mongoose.Schema({
 
 const UserModel = mongoose.model('users', userSchema);
 export default UserModel;
+
+
+/*
+Creación en la base de datos:
+    {
+        id: 1,
+        uuid: "a2373fe8-977e-4a2c-89c0-6f1a8b299b81",
+        username: "admin",
+        hashedPassword: "$2b$04$4rq7cgGhAY6b6Sw8ILN/5.CjP.IuWTwargY0N1HbooqO3gaRL1HXK",
+        email: "admin@fake.com",
+        roles: ["admin"],
+        fullName: "Admin"
+    },
+    {
+        id: 2,
+        uuid: "48523d9f-bf43-4fca-a4d3-c784ba18d566",
+        username: "operator",
+        hashedPassword: "$2b$04$4rq7cgGhAY6b6Sw8ILN/5.CjP.IuWTwargY0N1HbooqO3gaRL1HXK",
+        email: "operator@fake.com",
+        roles: ["operator"],
+        fullName: "Operator"
+    }
+*/

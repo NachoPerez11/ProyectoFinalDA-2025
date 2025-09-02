@@ -7,9 +7,9 @@ export default useSession;
 
 export const SessionProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [roles, setRoles] = useState([]);
+    const [user, setUser] = useState(null);
 
-    return <SessionContext.Provider value = {{isLoggedIn, setIsLoggedIn, roles, setRoles}}>
+    return <SessionContext.Provider value = {{isLoggedIn, setIsLoggedIn, user, setUser}}>
         { children }
     </SessionContext.Provider>;
 }
