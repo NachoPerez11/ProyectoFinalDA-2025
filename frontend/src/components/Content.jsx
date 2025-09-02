@@ -11,7 +11,7 @@ export default function Content() {
         flexGrow: 1,
       }}
     >
-      {!session.isLoggedIn ? <Login /> : <div>Bienvenido {session.username}</div>}
+      {!session.isLoggedIn ? <Login /> : <h2>Bienvenido</h2>}
       <Router />
     </div>
   );

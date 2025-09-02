@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import { BrowserRoute } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Head from './components/Head.jsx';
 import Body from './components/Body.jsx';
 import { ModalProvider } from './components/Modal.jsx'
@@ -13,10 +13,10 @@ export default function App() {
     <SnackbarProvider>
       <ModalProvider>
         <SessionProvider>
-          <BrowserRoute>
+          <BrowserRouter>
             <Head setMenuShowed={setMenuShowed}/>
             <Body menuShowed={menuShowed}/>
-          </BrowserRoute>
+          </BrowserRouter>
         </SessionProvider>
       </ModalProvider>
     </SnackbarProvider>

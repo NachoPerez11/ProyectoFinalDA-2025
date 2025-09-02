@@ -25,6 +25,10 @@ header, nav, main, footer {
   margin-bottom: 2em;
 }
 
+li{
+  list-style: none;
+}
+
 header {
   text-align: center;
   padding-bottom: 1em;
@@ -32,7 +36,7 @@ header {
 
 nav {
   display: flex;
-  width: 60%;
+  width: 70%;
   justify-content: center;
   margin: 1em auto;
   padding: 0;

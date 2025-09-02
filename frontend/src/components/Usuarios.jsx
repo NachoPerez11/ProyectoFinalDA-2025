@@ -1,3 +1,3 @@
 export default function Usuarios() {
-  return 'Usuarios';
+  return 'Lista de usuarios';
 }
