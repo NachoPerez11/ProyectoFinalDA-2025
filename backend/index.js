@@ -3,7 +3,9 @@ import config from './config.js';
 import mongoose from 'mongoose';
 import configureMiddleware from './middlewares/configure_middleware.js';
 import configureDependencies from './configure_dependencies.js';
-import bcrypt from 'bcrypt';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 
 if (!config.jwtKey){
     console.error('No se ha definido un jwtKey en la configuracion. Por favor cree un archivo configlocal.js que contenga jwtKey.');
@@ -17,11 +19,17 @@ mongoose.connect(config.dbConnection).then(() => {
     console.error('Error al conectar a MongoDB: ', error);
 });
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
-
 const router = express.Router();
-
 app.use('/api', router);
+app.use('*', express.static(path.join(__dirname, 'dist')));
+
+app.get('/.*/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
 configureMiddleware(router);
 configureDependencies();
