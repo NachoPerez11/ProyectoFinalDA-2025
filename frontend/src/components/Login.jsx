@@ -8,14 +8,15 @@ import { useSession } from './Session.jsx';
 
 
 export default function Login() {
-  const [username, setUsername] = useState('admin');
+  const [usuario, setUsuario] = useState('admin');
   const [password, setPassword] = useState('1234');
   const session = useSession();
   const snackbar = useSnackbar();
 
-  async function submit() {
+  async function submit(e) {
+    e.preventDefault();
     try {
-      const data = await login(username,password);
+      const data = await login(usuario,password);
       if(data.token) {
         api.headers.Authorization = `Bearer ${data.token}`;
         session.setIsLoggedIn(true);
@@ -33,15 +34,15 @@ export default function Login() {
   return (
     <Form
       title="Iniciar sesión"
-      action={submit}
+      onSubmit={submit}
       submitLabel="Ingresar"
     >
       <TextField
         label="Nombre de usuario"
-        name="username"
+        name="usuario"
         required={true}
-        value={username}
-        onChange={e => setUsername(e.target.value)}
+        value={usuario}
+        onChange={e => setUsuario(e.target.value)}
       />
       <TextField
         label="Contraseña"

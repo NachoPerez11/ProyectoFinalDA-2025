@@ -18,7 +18,7 @@ export function authorizationMiddleware(req,res,next){
 
     const data = jwt.verify(token, config.jwtKey);
     
-    req.session = data; //Desde el endpoint de usuario puedo obtener a esta información
+    req.session = data; //Desde el endpoint de usuario puedo obtener esta información
     next();
 }
 

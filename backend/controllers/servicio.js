@@ -1,13 +1,11 @@
 import { ServicioService } from '../services/servicioService.js';
-// Importamos tu función real para chequear roles
 import { checkForRole } from '../middlewares/authorization_middleware.js';
 
 export function servicio(app) {
-    
     /**
      * @route GET /servicios
-     * @description Devuelve todos los servicios activos (para el cliente)
-     * @access Público
+     * @description Obtiene todos los servicios disponibles (peluquería, etc.)
+     * @access Public
      */
     app.get('/servicios', async (req, res, next) => {
         try {

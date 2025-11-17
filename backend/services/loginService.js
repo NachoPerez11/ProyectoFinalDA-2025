@@ -14,6 +14,7 @@ export class LoginService {
         if (!user) {
             throw new InvalidCredentialsException('Credenciales inválidas');
         }
+        //const clave = bcrypt.hashSync(password, 10);
 
         const isPasswordValid = bcrypt.compareSync(password, user.claveHasheada);
         if (!isPasswordValid) {
