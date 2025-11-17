@@ -1,6 +1,6 @@
 export class InvalidCredentialsException extends Error{
-    constructor(){
-        super('Acceso prohibido');
-        this.statusCode = 403;
+    constructor(msg){
+        super(msg || 'Credenciales inválidas');
+        this.statusCode = 401;
     }
 }

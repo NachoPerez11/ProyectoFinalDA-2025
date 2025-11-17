@@ -1,0 +1,37 @@
+### OBTENER TOKEN (Usá el de user.http o logueate de nuevo)
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTFhYzk4N2Y3ZGZjMWQyMzA3YWQ4NWQiLCJ1c3VhcmlvIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdLCJpYXQiOjE3NjMzNjQ2MzQsImV4cCI6MTc2MzM5MzQzNH0.0aSD36sGgu33fioAclrQ43EnP2YvcJi1ks2miWOeczM
+
+### --------------------------------------
+
+### GET /servicios (Ruta Pública)
+# (No necesita token)
+GET http://localhost:3000/api/servicios
+Accept: application/json
+
+### --------------------------------------
+
+### POST /servicios (Solo Admin)
+# (Necesita token de Admin)
+POST http://localhost:3000/api/servicios
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "nombre": "Corte de Pelo",
+    "duracion": 30,
+    "precio": 3500
+}
+
+### POST /servicios (Solo Admin)
+# (Necesita token de Admin)
+POST http://localhost:3000/api/servicios
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "nombre": "Coloración",
+    "duracion": 90,
+    "precio": 12000
+}

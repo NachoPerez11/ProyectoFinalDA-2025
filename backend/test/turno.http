@@ -1,0 +1,33 @@
+### OBTENER TOKEN (Usá el de user.http o logueate de nuevo)
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTFhYzk4N2Y3ZGZjMWQyMzA3YWQ4NWQiLCJ1c3VhcmlvIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdLCJpYXQiOjE3NjMzNjMzMjgsImV4cCI6MTc2MzM5MjEyOH0.wjbkMSbJusOlcVImjkaCseHvTUZfGolO0P2p5KBMu2c
+
+### --------------------------------------
+
+### POST /turnos (Cliente o Admin)
+# (Necesita token)
+# (Tenés que reemplazar el 'servicioId' por un _id real de tu base de datos)
+POST http://localhost:3000/api/turnos
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "servicioId": "691aca4deec3303eadf3e6e3",
+    "fecha": "2025-11-20T14:30:00.000Z"
+}
+
+### --------------------------------------
+
+### GET /turnos/my (Cliente o Admin)
+# (Devuelve los turnos del usuario del token)
+GET http://localhost:3000/api/turnos/my
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### --------------------------------------
+
+### GET /turnos/all (Solo Admin)
+# (Devuelve TODOS los turnos)
+GET http://localhost:3000/api/turnos/all
+Accept: application/json
+Authorization: Bearer {{token}}

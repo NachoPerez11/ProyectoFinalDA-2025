@@ -1,29 +1,46 @@
-### GET USERS
-
-GET http://localhost:3000/api/user
+### 1. LOGIN (OBTENER TOKEN)
+# (Ejecutá este y copiá el token de la respuesta)
+POST http://localhost:3000/api/login
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2ODNmNmQ1OWNjMGVhNmFjZWY3MjVmZDIiLCJ1c2VybmFtZSI6ImFkbWluIiwiZnVsbE5hbWUiOiJBZG1pbiIsInJvbGVzIjpbImFkbWluIl0sImlhdCI6MTc0OTU5NTUzNiwiZXhwIjoxNzQ5NjEzNTM2fQ.zm7GvGo4LQNAd6x8BYn9sXbjm0TdirIR6p1swSmF6PQ
-Content-Type: application/json
-
-### CREATE USER
-
-POST http://localhost:3000/api/user
-Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2ODNmNmQ1OWNjMGVhNmFjZWY3MjVmZDIiLCJ1c2VybmFtZSI6ImFkbWluIiwiZnVsbE5hbWUiOiJBZG1pbiIsInJvbGVzIjpbImFkbWluIl0sImlhdCI6MTc0OTU5NTUzNiwiZXhwIjoxNzQ5NjEzNTM2fQ.zm7GvGo4LQNAd6x8BYn9sXbjm0TdirIR6p1swSmF6PQ
 Content-Type: application/json
 
 {
-  "username": "operator02",
-  "password": "12345",
-  "fullName": "Operator",
-  "roles": ["operator"],
-  "email": "operator@fake.com"
+    "usuario": "admin",
+    "password": "1234"
 }
 
+### -------------------------
 
-### DELETE USER
-
-DELETE http://localhost:3000/api/user/7e9ea56a-2e10-49b0-9d42-ae2bfec4fedf
+### 2. GET USERS (plural)
+# (Pegá el token acá abajo)
+GET http://localhost:3000/api/users
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2ODNmNmQ1OWNjMGVhNmFjZWY3MjVmZDIiLCJ1c2VybmFtZSI6ImFkbWluIiwiZnVsbE5hbWUiOiJBZG1pbiIsInJvbGVzIjpbImFkbWluIl0sImlhdCI6MTc0OTU5NTUzNiwiZXhwIjoxNzQ5NjEzNTM2fQ.zm7GvGo4LQNAd6x8BYn9sXbjm0TdirIR6p1swSmF6PQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTFhYzk4N2Y3ZGZjMWQyMzA3YWQ4NWQiLCJ1c3VhcmlvIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdLCJpYXQiOjE3NjMzNjU4MDgsImV4cCI6MTc2MzM5NDYwOH0.yfGllz9BLHAgGkUgE4Vflocfu6WN6EP2dzGaQ9IUYGE
+
+### -------------------------
+
+### 3. CREATE USER (plural)
+# (Pegá el token acá abajo)
+POST http://localhost:3000/api/users
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTFhYzk4N2Y3ZGZjMWQyMzA3YWQ4NWQiLCJ1c3VhcmlvIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdLCJpYXQiOjE3NjMzNjU4MDgsImV4cCI6MTc2MzM5NDYwOH0.yfGllz9BLHAgGkUgE4Vflocfu6WN6EP2dzGaQ9IUYGE
 Content-Type: application/json
+
+{
+    "usuario": "nuevo_op",
+    "password": "12345",
+    "nombre": "Nuevo Operador",
+    "roles": ["operator"],
+    "email": "nuevo@fake.com"
+}
+
+### -------------------------
+
+### 4. DELETE USER (plural)
+# (Pegá el token acá abajo)
+DELETE http://localhost:3000/api/users/00000000-0000-0000-0000-000000000001
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTFhYzk4N2Y3ZGZjMWQyMzA3YWQ4NWQiLCJ1c3VhcmlvIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdLCJpYXQiOjE3NjMzNjU4MDgsImV4cCI6MTc2MzM5NDYwOH0.yfGllz9BLHAgGkUgE4Vflocfu6WN6EP2dzGaQ9IUYGE
+
+
+### ACTUALIZAR TOKEN CUANDO SE VAYA A USAR

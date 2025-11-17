@@ -1,27 +1,35 @@
-import {UserService} from '../services/userService.js';
-import {checkForRole} from '../middlewares/authorization_middleware.js';
+import { UserService } from '../services/userService.js';
+import { checkForRole } from '../middlewares/authorization_middleware.js';
 
-export function user(app){
-    app.get('/user', checkForRole('admin'), async (req, res) => {
-        const query = req.query;
-        const users = await UserService.get(query);
-        const result = users.map(user => ({
-            uuid: user.uuid,
-            username: user.username,
-            fullName: user.fullName,
-            roles: user.roles,
-            email: user.email
-        }));
-        res.send(result);
+export function user(app) {
+
+    // GET /users - (Solo Admin) Ver todos los usuarios
+    app.get('/users', checkForRole('admin'), async (req, res, next) => {
+        try {
+            const users = await UserService.get(req.query); // req.query para filtros
+            res.status(200).json(users);
+        } catch (error) {
+            next(error);
+        }
     });
 
-    app.post('/user', checkForRole('admin'), async (req, res) => { 
-        await UserService.create(req.body);
-        res.status(204).send();
+    // POST /users - (Solo Admin) Crear un usuario
+    app.post('/users', checkForRole('admin'), async (req, res, next) => {
+        try {
+            const newUser = await UserService.create(req.body);
+            res.status(201).json(newUser);
+        } catch (error) {
+            next(error);
+        }
     });
 
-    app.delete('/user/:uuid', checkForRole('admin'), async (req, res) => {
-        await UserService.deleteByUuid(req.params.uuid);
-        res.status(204).send();
+    // DELETE /users/:uuid - (Solo Admin) Borrar un usuario
+    app.delete('/users/:uuid', checkForRole('admin'), async (req, res, next) => {
+        try {
+            await UserService.deleteByUuid(req.params.uuid);
+            res.status(204).send(); // 204 = No Content (Éxito sin respuesta)
+        } catch (error) {
+            next(error);
+        }
     });
-};
+}

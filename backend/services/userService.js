@@ -1,64 +1,62 @@
 import { getDependency } from '../libs/dependencies.js';
 import bcrypt from 'bcrypt';
+import crypto from 'crypto';
+import { InvalidArgumentException } from '../exceptions/invalid_argument_exception.js';
 
 export class UserService {
-    static async getSingleOrNullByUsername(username) {
-        const users = getDependency('UserModel');
-        return await users.findOne({ username: username });
+
+    // Busca un usuario por su nombre de 'usuario'
+    static async getSingleOrNullByUsuario(username) {
+        const Usuario = getDependency('UsuarioModel');
+        // Busca usando tu campo 'usuario'
+        return await Usuario.findOne({ usuario: username });
     }
 
+    //Devuelve todos los usuarios (para el admin)
     static async get(filter){
-        const UserModel = getDependency('UserModel');
-        console.log(UserModel.find({}));
-        return await UserModel.find(filter);
+        const UsuarioModel = getDependency('UsuarioModel');
+        return await UsuarioModel.find(filter);
     }
 
+    // Crea un nuevo usuario
     static async create(user) {
-        if (!user.username){
-            throw new InvalidArgumentError('Nombre de usuario requerido');
+        if (!user.usuario){
+            throw new InvalidArgumentException('Nombre de usuario requerido');
         }
-        
-        if(!user.fullName){
-            throw new InvalidArgumentError('Nombre completo requerido'); 
+        if(!user.nombre){
+            throw new InvalidArgumentException('Nombre completo requerido'); 
         }
-        
-        if(!user.roles){
-            throw new InvalidArgumentError('Roles requeridos');
+        if(!user.roles || !user.email || !user.password){
+             throw new InvalidArgumentException('Email, roles y contraseña son requeridos');
         }
 
-        if(!user.email){
-            throw new InvalidArgumentError('Email requerido');
-        }
-
-        if(!user.password){
-            throw new InvalidArgumentError('Contraseña requerida');
-        }
-
-        const UserModel = getDependency('UserModel');
-        const existingUser = await UserModel.find({ username: user.username });
+        const UsuarioModel = getDependency('UsuarioModel');
+        const existingUser = await UsuarioModel.find({ usuario: user.usuario });
         if (existingUser.length > 0) {
             throw new Error('El nombre de usuario ya existe');
         }
 
+        // Hashea la contraseña y la guarda en 'claveHasheada'
         if(user.password){
-            user.hashedPassword = bcrypt.hashSync(user.password, 10);
-            delete user.password; // Eliminar la contraseña sin hashear
+            user.claveHasheada = bcrypt.hashSync(user.password, 10);
+            delete user.password;
         }
         
-        user.uuid = crypto.randomUUID(); // Generar un UUID único para el usuario
-        const newUser = new UserModel(user);
+        user.uuid = crypto.randomUUID();
+        const newUser = new UsuarioModel(user);
         await newUser.save();
         return newUser;
     }
 
+    // Borra un usuario por su UUID
     static async deleteByUuid(uuid) {
         if (!uuid) {
-            throw new InvalidArgumentError('UUID requerido');
+            throw new InvalidArgumentException('UUID requerido');
         }
-        const UserModel = getDependency('UserModel');
-        const user = await UserModel.findOneAndDelete({ uuid: uuid });
+        const UsuarioModel = getDependency('UsuarioModel');
+        const user = await UsuarioModel.findOneAndDelete({ uuid: uuid });
         if (!user) {
-            throw new InvalidArgumentError('Usuario no encontrado');
+            throw new InvalidArgumentException('Usuario no encontrado');
         }
     }
 };
