@@ -6,11 +6,12 @@ export default function Menu() {
   return (
     <nav className="menu">
       <li><Link to="/">Inicio</Link></li>
+      <li><Link to="/servicios">Servicios</Link></li>
       {
         session.isLoggedIn && 
           <>
             {
-              //session.roles.includes('admin') &&  //Si el usuario es admin (Hacer comprobación)
+              //session.user?.roles.includes('admin') &&  //Si el usuario es admin (Hacer comprobación)
               <li><Link to="/usuarios">Usuarios</Link></li>
             }
             <li><Link to="#" onClick={() => session.setIsLoggedIn(false)}>Salir</Link></li>

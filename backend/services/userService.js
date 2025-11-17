@@ -8,8 +8,27 @@ export class UserService {
     // Busca un usuario por su nombre de 'usuario'
     static async getSingleOrNullByUsuario(username) {
         const Usuario = getDependency('UsuarioModel');
-        // Busca usando tu campo 'usuario'
         return await Usuario.findOne({ usuario: username });
+    }
+
+    // Busca un usuario por su UUID
+    static async getByUuid(uuid) {
+        if (!uuid) {
+            throw new InvalidArgumentException('UUID requerido');
+        }
+        const UsuarioModel = getDependency('UsuarioModel');
+        const user = await UsuarioModel.findOne({ uuid: uuid });
+        if (!user) {
+            throw new InvalidArgumentException('Usuario no encontrado');
+        }
+
+        return {
+            uuid: user.uuid,
+            usuario: user.usuario,
+            email: user.email,
+            roles: user.roles,
+            nombre: user.nombre
+        };
     }
 
     //Devuelve todos los usuarios (para el admin)
@@ -35,8 +54,6 @@ export class UserService {
         if (existingUser.length > 0) {
             throw new Error('El nombre de usuario ya existe');
         }
-
-        // Hashea la contraseña y la guarda en 'claveHasheada'
         if(user.password){
             user.claveHasheada = bcrypt.hashSync(user.password, 10);
             delete user.password;

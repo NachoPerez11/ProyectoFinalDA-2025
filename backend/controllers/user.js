@@ -13,6 +13,16 @@ export function user(app) {
         }
     });
 
+    // GET /users/:uuid - (Solo Admin) Ver un usuario por UUID
+    app.get('/users/:uuid', checkForRole('admin'), async (req, res, next) => {
+        try {
+            const user = await UserService.getByUuid(req.params.uuid);
+            res.status(200).json(user);
+        } catch (error) {
+            next(error);
+        }
+    });    
+
     // POST /users - (Solo Admin) Crear un usuario
     app.post('/users', checkForRole('admin'), async (req, res, next) => {
         try {
@@ -27,7 +37,7 @@ export function user(app) {
     app.delete('/users/:uuid', checkForRole('admin'), async (req, res, next) => {
         try {
             await UserService.deleteByUuid(req.params.uuid);
-            res.status(204).send(); // 204 = No Content (Éxito sin respuesta)
+            res.status(204).send(); // 204 = Sin contenido
         } catch (error) {
             next(error);
         }

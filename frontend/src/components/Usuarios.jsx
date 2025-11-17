@@ -21,8 +21,8 @@ export default function Usuarios() {
     <tbody>
       {users.map(user => (
         <tr key={user.uuid}>
-          <td>{user.username}</td>
-          <td>{user.fullName}</td>
+          <td>{user.usuario}</td>
+          <td>{user.nombre}</td>
           <td>{user.email}</td>
           <td>{user.roles.join(", ")}</td>
           <td><Button><Link to={`/usuario/${user.uuid}`}>Editar</Link></Button></td>

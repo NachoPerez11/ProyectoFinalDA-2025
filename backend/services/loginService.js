@@ -8,11 +8,13 @@ export class LoginService {
     
     static async login(credentials) {
         const { usuario, password } = credentials;
+
         const user = await UserService.getSingleOrNullByUsuario(usuario);
 
         if (!user) {
             throw new InvalidCredentialsException('Credenciales inválidas');
         }
+
         const isPasswordValid = bcrypt.compareSync(password, user.claveHasheada);
         if (!isPasswordValid) {
             throw new InvalidCredentialsException('Credenciales inválidas');
@@ -20,15 +22,23 @@ export class LoginService {
 
         const payload = {
             _id: user._id,
-            usuario: user.usuario, 
+            usuario: user.usuario,
             roles: user.roles
         };
 
         const token = jwt.sign(payload, config.jwtKey, { expiresIn: '8h' });
 
+        const userResponse = {
+            _id: user._id,
+            usuario: user.usuario,
+            roles: user.roles,
+            nombre: user.nombre
+        };
+
         return {
             message: 'Login exitoso',
-            token: token
+            token: token,
+            user: userResponse
         };
     }
 }
