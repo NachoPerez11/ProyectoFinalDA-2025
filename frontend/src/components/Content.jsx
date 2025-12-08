@@ -3,16 +3,14 @@ import { useSession } from './Session.jsx';
 import Router from './Router.jsx';
 
 export default function Content() {
-  const session = useSession();
-  return (
-    <div
-      className="content"
-      style={{
-        flexGrow: 1,
-      }}
-    >
-      {!session.isLoggedIn ? <Login /> : <h2>Bienvenido {session.user?.nombre}</h2>}
-      <Router />
-    </div>
-  );
+    const session = useSession();
+    return (
+        <div>
+            {/* Si NO está logueado mostramos Login */}
+            {!session.isLoggedIn && <Login />}
+
+            {/* Si está logueado mostramos solo el Router */}
+            {session.isLoggedIn && <Router />}
+        </div>
+    );
 }

@@ -48,7 +48,7 @@ export class TurnoService {
             cliente: usuarioId,
             servicio: servicioId,
             fecha: new Date(fecha),
-            estado: 'pendiente' // Usa tu campo 'estado'
+            estado: 'Pendiente' 
         });
 
         return await turnoNuevo.save();
@@ -65,7 +65,7 @@ export class TurnoService {
             throw new Error('Turno no encontrado o no te pertenece');
         }
         
-        turno.estado = 'cancelado'; // Usa tu campo 'estado'
+        turno.estado = 'Cancelado'; 
         return await turno.save();
     }
 }

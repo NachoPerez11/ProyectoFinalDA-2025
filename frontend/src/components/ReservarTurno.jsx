@@ -49,7 +49,6 @@ export default function ReservarTurno() {
     return (
         <form onSubmit={manejadorDeEnvios}>
             <h2>Reservar un Turno</h2>
-            
             <label>
                 Selecciona un servicio:
                 <select value={servicioId} onChange={e => setServicioId(e.target.value)}>

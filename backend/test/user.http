@@ -29,8 +29,8 @@ Content-Type: application/json
 {
     "usuario": "nuevo_op",
     "password": "12345",
-    "nombre": "Nuevo Operador",
-    "roles": ["operator"],
+    "nombre": "Nuevo Cliente",
+    "roles": ["cliente"],
     "email": "nuevo@fake.com"
 }
 

@@ -15,30 +15,30 @@ export default function Usuario() {
       }
     }, [uuid]);
 
-  return <Form title="Editar Usuario">
+  return <Form title="Editar Usuario" submitLabel="Guardar cambios">
     <TextField 
-    label="Nombre completo"
-    name="nombre"
-    required={true}
-    value={data.nombre || ''}
-    onChange={e => setData({...data, nombre: e.target.value})}
+      label="Nombre completo"
+      name="nombre"
+      required={true}
+      value={data.nombre || ''}
+      onChange={e => setData({...data, nombre: e.target.value})}
     />
     <TextField 
-    label="Email"
-    name="email"
-    required={true}
-    value={data.email || ''}
-    onChange={e => setData({...data, email: e.target.value})}
+      label="Email"
+      name="email"
+      required={true}
+      value={data.email || ''}
+      onChange={e => setData({...data, email: e.target.value})}
     />
     <MultiSelectField
-    label="Roles"
-    name="roles"
-    value={data.roles}
-    onChange={newValue => setData({...data, roles: newValue})}
-    options={[
-        { label: "Administrador", value: "admin" },
-        { label: "Operador", value: "operator" }
-    ]}
+      label="Roles"
+      name="roles"
+      value={data.roles}
+      onChange={newValue => setData({...data, roles: newValue})}
+      options={[
+          { label: "Administrador", value: "admin" },
+          { label: "Cliente", value: "cliente" }
+      ]}
     />
   </Form>
 }

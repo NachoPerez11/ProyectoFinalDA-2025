@@ -15,7 +15,8 @@ export default function Usuarios() {
         <th>Nombre completo</th>
         <th>Email</th>
         <th>Roles</th>
-        <th>Acciones</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
       </tr>
     </thead>
     <tbody>
@@ -26,6 +27,7 @@ export default function Usuarios() {
           <td>{user.email}</td>
           <td>{user.roles.join(", ")}</td>
           <td><Button><Link to={`/usuario/${user.uuid}`}>Editar</Link></Button></td>
+          <td><Button><Link to={`/usuario/${user.uuid}`}>Eliminar</Link></Button></td>
         </tr>
       ))}
     </tbody>

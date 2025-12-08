@@ -8,8 +8,8 @@ import { useSession } from './Session.jsx';
 
 
 export default function Login() {
-  const [usuario, setUsuario] = useState('admin');
-  const [password, setPassword] = useState('1234');
+  const [usuario, setUsuario] = useState();
+  const [password, setPassword] = useState();
   const session = useSession();
   const snackbar = useSnackbar();
 
