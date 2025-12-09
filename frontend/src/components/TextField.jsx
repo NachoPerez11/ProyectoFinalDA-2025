@@ -10,7 +10,7 @@ export default function TextField({
       { label }
       <input
         name={name}
-        value={value}
+        value={value || ''}
         onChange={onChange}
         {...props}
       />

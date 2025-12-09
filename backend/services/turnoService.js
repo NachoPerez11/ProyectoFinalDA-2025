@@ -64,8 +64,7 @@ export class TurnoService {
         if (!turno) {
             throw new Error('Turno no encontrado o no te pertenece');
         }
-        
-        turno.estado = 'Cancelado'; 
+        turno.estado = 'Eliminado';
         return await turno.save();
     }
 }

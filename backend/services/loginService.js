@@ -23,6 +23,7 @@ export class LoginService {
 
         const payload = {
             _id: user._id,
+            uuid: user.uuid,
             usuario: user.usuario,
             roles: user.roles
         };
@@ -31,7 +32,9 @@ export class LoginService {
 
         const userResponse = {
             _id: user._id,
+            uuid: user.uuid,
             usuario: user.usuario,
+            email: user.email,
             roles: user.roles,
             nombre: user.nombre
         };

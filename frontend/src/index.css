@@ -1,117 +1,148 @@
 :root {
-  font-family:'Times New Roman', Times, serif;
-  background-color: lightskyblue;
-  color: white;
+  /* Mantenemos tu fuente y paleta base */
+  font-family: 'Times New Roman', Times, serif;
+  --bg-gradient: linear-gradient(135deg, lightskyblue 0%, lightblue 100%);
+  --primary-dark: #002855; /* Azul oscuro del panel */
+  --primary-light: lightskyblue;
+  --text-white: #ffffff;
+  --text-dark: #333333;
 }
 
-/* Estilos generales para toda la página */
+/* --- ESTILOS GENERALES --- */
 body {
   padding: 2em;
   box-sizing: border-box;
   margin: 0;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  color: var(--text-dark);
 }
 
 header, nav, main, footer {
   margin-bottom: 2em;
 }
 
-li{
+li {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
+/* --- ENCABEZADO Y NAVEGACIÓN --- */
 header {
   text-align: center;
   padding-bottom: 1em;
+  color: var(--primary-dark);
 }
 
 nav {
   display: flex;
   width: 100%;
   justify-content: center;
+  gap: 1em;
   margin: 1em auto;
-  padding-bottom: .8em;
-  padding-top: .8em;
-  border-radius: 12px;
+  padding: 1em;
 }
 
 nav a {
-  padding: 0.8em 1.5em;
-  margin : 0 .8em;
-  font-weight: 600;
-  font-size: 1.3em;
-  border-radius: 12px;
-  background-color: lightskyblue;
-  box-shadow: 5px 5px 8px black;
-  color: black;
-  text-decoration: none;
+  font-size: 1.2em;
+  color: var(--primary-light);
+  font-weight: bold;
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
+
 nav a:hover {
-  color: white;
-  box-shadow: 1px 1px 1px black;
-  transition:  color 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 main {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px black;
-  padding: 2em;
+  border-radius: 15px;
+  background-color: var(--primary-dark); 
+  color: var(--text-white);
+  padding: 2.5em;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
 }
 
-footer {
-  text-align: center;
-  font-size: 1em;
-  padding: 1em 0;
-}
-
+/* --- TIPOGRAFÍA --- */
 h1, h2, h3 {
   border-radius: 12px;
   padding: 0.5em;
   width: fit-content;
-  margin: 0 auto;
+  margin: 0 auto 1em auto;
+  text-align: center;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; color: var(--primary-light); }
+
+/* --- FORMULARIOS (INPUTS Y LABELS) --- */
+label {
+  display: block;
+  margin-bottom: 0.5em;
+  margin-top: 1.5em;
+  font-weight: 600;
+  font-size: 1.1em;
+  color: var(--primary-light);
+  text-align: center;
 }
 
 input, textarea, select {
   display: block;
-  margin: auto;
+  margin: 0 auto 1em auto;
   width: 70%;
-  margin-bottom: 1em;
-  border-radius: 6px;
-  padding: 0.8em;
+  max-width: 400px;
+  border-radius: 8px;
+  padding: 12px;
   font-size: 1em;
   font-weight: 600;
-  color: black;
+  color: var(--text-dark);
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 2px solid transparent;
   text-align: center;
-}
-input:focus, textarea:focus, select:focus {
-  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-button {
-  background: lightskyblue;
-  color: black;
+/* Efecto al escribir */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 8px rgba(135, 206, 250, 0.6);
+  background-color: white;
+}
+
+/* --- BOTONES --- */
+button, .btn-primary {
+  background: var(--primary-light);
+  color: var(--text-white);
   border: none;
-  box-shadow: 5px 5px 8px black;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
   border-radius: 8px;
   padding: 0.8em 1.5em;
   font-size: 1em;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.4s ease;
+  transition: all 0.2s ease;
+  display: inline-block;
 }
 
-button:hover {
-  color: white;
-  box-shadow: 1px 1px 1px black;
-  transition:  color 0.3s ease;
+/* Efecto Hover (pasar mouse) */
+button:hover, .btn-primary:hover {
+  filter: brightness(1.1); 
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0,0,0,0.4);
+  color: black;
 }
 
-label {
-  display: block;
-  margin-bottom: 0.8em;
-  font-weight: 600;
-  font-size: 1.1em;
+button:active, .btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.3);
 }
 
 .tabla {
@@ -120,63 +151,72 @@ label {
   flex-direction: column;
   border-collapse: collapse;
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 5px 5px 8px black;
-  background: linear-gradient(180deg, lightskyblue 0%, lightblue 100%);
-  color: black;
-  font-size: 1.5em;
-  margin-top: 1em;
-  }
+  overflow: hidden; 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  background-color: rgba(255, 255, 255, 0.1); 
+  margin-top: 2em;
+}
 
-  .tabla thead {
-    background-color: deepskyblue;
-    font-weight: 600;
-  }
+.tabla thead {
+  background-color: var(--primary-light);
+  color: var(--text-dark);
+  font-weight: bold;
+}
 
-  .tabla thead tr {
-    display: flex;
-    padding: 1.2em;
-  }
+.tabla tbody {
+  background-color: rgba(255, 255, 255, 0.9); 
+  color: var(--text-dark);
+}
 
-  .tabla thead th {
-    flex: 1;
-    text-align: center;
-    font-size: 1em;
-  }
+.tabla tr {
+  display: flex;
+  padding: 1em;
+  align-items: center;
+}
 
-  .tabla tbody tr {
-    display: flex;
-    padding: 1.2em;
-    transition: background-color 0.3s ease;
-  }
+.tabla tbody tr {
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.2s;
+}
 
-  .tabla tbody tr:hover {
-    border-radius: 12px;
-    background-color: lightskyblue;
-    box-shadow: 5px 5px 8px black;
-    cursor: default;
-  }
+.tabla tbody tr:hover {
+  background-color: #e6f7ff;
+}
 
-  .tabla tbody td {
-    flex: 1;
-    font-size: 1em;
-  }
+/* CELDAS (TH y TD) */
+.tabla th, .tabla td {
+  flex: 1; 
+  display: flex;
+  align-items: center;     
+  justify-content: center;
+  text-align: center;
+  word-break: break-word;
+  padding: 0 5px;
+  font-size: 0.95em;
+}
 
+.tabla button {
+  font-size: 0.8em;
+  padding: 0.5em 0.8em;
+  margin: 0 2px;
+  min-width: 70px;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+/* --- MULTI SELECT FIELD (TARJETAS) --- */
 .multi-select-container {
-  margin-bottom: 1.5em;
+  margin: 1.5em auto;
   text-align: center; 
   width: 70%;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 400px;
 }
 
 .field-label {
-  display: flex;
-  flex-direction: column;
+  display: block;
   margin-bottom: 0.8em;
   font-weight: 600;
   font-size: 1.1em;
-  color: white; 
+  color: var(--primary-light); 
 }
 
 .options-grid {
@@ -187,35 +227,50 @@ label {
 
 .option-card {
   display: flex;
+  align-items: center; 
   padding: 0.8em 1em;
   background-color: white;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   color: #333;
+  border: 2px solid transparent;
 }
 
 .option-card:hover {
-  background-color: white;
   transform: translateX(5px); 
+  background-color: #f0f8ff;
 }
 
 .option-card.selected {
   background-color: #e6f0ff; 
+  border-color: var(--primary-dark);
   font-weight: bold;
-  color: #093d98;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: var(--primary-dark);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .option-card input[type="checkbox"] {
   width: 1.2em;
   height: 1.2em;
-  margin: 0;
-  margin-right: 1em;
-  accent-color: #093d98;
+  margin: 0 1em 0 0; 
+  accent-color: var(--primary-dark);
+  box-shadow: none; 
+  pointer-events: none; 
 }
 
 .option-text {
   font-size: 1em;
   user-select: none; 
+  flex-grow: 1; 
+  text-align: left;
+}
+
+/* --- FOOTER --- */
+footer {
+  text-align: center;
+  font-size: 0.9em;
+  padding: 2em 0;
+  color: var(--text-dark);
+  opacity: 0.8;
 }

@@ -60,3 +60,7 @@ export async function postJson(service, body, options) {
 export async function getJson(service, query, options) {
     return await get(service, query, {...options, json: true});
 }
+
+export async function patchJson(service, body, options) {
+    return await fetchApi(service, { ...options, body, method: 'PATCH', json: true });
+}

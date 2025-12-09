@@ -13,23 +13,18 @@ export default function CrearServicio() {
 
     async function submit(e) {
         e.preventDefault();
-
-        // Validaciones básicas
         if (!nombre || !duracion || !precio) {
             snackbar.enqueue('Todos los campos son obligatorios', { variant: 'warning' });
             return;
         }
-
         try {
             await servicioService.createServicio({
                 nombre,
-                duracion: Number(duracion), // Aseguramos que sea número
-                precio: Number(precio)      // Aseguramos que sea número
+                duracion: Number(duracion),
+                precio: Number(precio)
             });
 
             snackbar.enqueue('Servicio creado con éxito', { variant: 'success' });
-            
-            // Limpiamos el formulario
             setNombre('');
             setDuracion('');
             setPrecio('');

@@ -8,7 +8,7 @@ export default function Usuarios() {
 
   useEffect(() => {userService.get().then(setUsers)}, []);
 
-  return <table>
+  return <table className='tabla'>
     <thead>
       <tr>
         <th>Nombre de usuario</th>
@@ -26,8 +26,8 @@ export default function Usuarios() {
           <td>{user.nombre}</td>
           <td>{user.email}</td>
           <td>{user.roles.join(", ")}</td>
-          <td><Button><Link to={`/usuario/${user.uuid}`}>Editar</Link></Button></td>
-          <td><Button><Link to={`/usuario/${user.uuid}`}>Eliminar</Link></Button></td>
+          <td><Button><Link to={`/admin/usuarios/${user.uuid}`}>Editar</Link></Button></td>
+          <td><Button disabled title='Proximamente'><Link to={`/usuario/${user.uuid}`}>Eliminar</Link></Button></td>
         </tr>
       ))}
     </tbody>
