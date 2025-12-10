@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom';
 
 export default function Menu() {
   const session = useSession();
-  const handleLogout = () => {
-    if (session.logout) session.logout();
-    else session.setIsLoggedIn(false);
-  };
   return (
     <nav>
+      {/*
+      Links para crear una cuenta 
+      {!session.isLoggedIn && 
+      <>
+        <li><Link to="/registro">Registrarse</Link></li>
+      </>}
+      */}
+      
       {/* Links para administradores */}
       {session.user?.roles.includes('admin') &&
       <>
@@ -36,12 +40,6 @@ export default function Menu() {
               }
           }}>Salir</Link>
         </li>
-      </>}
-
-      {/* Links para crear una cuenta */}
-      {!session.isLoggedIn && 
-      <>
-        <li><Link to="/registro">Registrarse</Link></li>
       </>}
     </nav>
   );

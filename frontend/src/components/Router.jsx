@@ -1,10 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { useSession } from './Session.jsx';
 import Home from './Home.jsx';
-import Footer from './Footer.jsx';
 import NotFound from './NotFound.jsx';
-
-// Archivos de Admin
+import Login from './Login.jsx';
 import GestionUsuarios from './GestionUsuarios.jsx';
 import GestionServicios from './GestionServicios.jsx';
 import GestionTurnos from './GestionTurnos.jsx';
@@ -23,6 +21,7 @@ export default function Router() {
     return (
         <Routes>
             {/* --- RUTAS PÚBLICAS --- */}
+            <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />
             <Route path="/registro" element={<AltaUsuario />} />
 

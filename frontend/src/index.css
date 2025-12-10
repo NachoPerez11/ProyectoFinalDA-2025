@@ -109,6 +109,12 @@ input, textarea, select {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+input:disabled, textarea:disabled, select:disabled {
+  background-color: #f0f0f0;
+  color: #999999;
+  cursor: not-allowed;
+}
+
 .option-card input[type="radio"] {
   width: 1.2em;
   height: 1.2em;
