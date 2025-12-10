@@ -109,6 +109,14 @@ input, textarea, select {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+.option-card input[type="radio"] {
+  width: 1.2em;
+  height: 1.2em;
+  margin: 0 1em 0 0;
+  accent-color: var(--primary-dark); 
+  cursor: pointer;
+}
+
 /* Efecto al escribir */
 input:focus, textarea:focus, select:focus {
   outline: none;

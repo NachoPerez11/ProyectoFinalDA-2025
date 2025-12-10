@@ -1,4 +1,4 @@
-import { getJson, patchJson, postJson } from "../libs/api.js"; 
+import { getJson, patchJson, postJson, deleteJson } from "../libs/api.js"; 
 
 // Devuelve la lista de todos los usuarios
 export async function get() {
@@ -18,4 +18,8 @@ export async function update(uuid, data) {
 // Crea un nuevo usuario
 export async function create(data) {
     return await postJson('/users', data);
+}
+
+export async function remove(uuid) {
+    return await deleteJson(`/users/${uuid}`);
 }

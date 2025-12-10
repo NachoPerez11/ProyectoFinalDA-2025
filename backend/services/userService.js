@@ -65,6 +65,31 @@ export class UserService {
         return newUser;
     }
 
+    // Actualiza un usuario por su UUID
+    static async updateByUuid(uuid, data) {
+        if (!uuid) {
+            throw new InvalidArgumentException('UUID requerido');
+        }
+        const UsuarioModel = getDependency('UsuarioModel');
+        const user = await UsuarioModel.findOne({ uuid: uuid });
+        
+        if (!user) {
+            throw new InvalidArgumentException('Usuario no encontrado');
+        }
+        if (data.nombre) user.nombre = data.nombre;
+        if (data.email) user.email = data.email;
+        if (data.roles) user.roles = data.roles;
+        await user.save();
+        return {
+            uuid: user.uuid,
+            usuario: user.usuario,
+            email: user.email,
+            roles: user.roles,
+            nombre: user.nombre
+        };
+    }
+
+
     // Borra un usuario por su UUID
     static async deleteByUuid(uuid) {
         if (!uuid) {

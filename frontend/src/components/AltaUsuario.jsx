@@ -1,8 +1,11 @@
+// EN: src/components/AltaUsuario.jsx
+
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Form from "./Form";
 import TextField from "./TextField";
-import MultiSelectField from "./MultiSelectField";
+// import MultiSelectField from "./MultiSelectField"; <-- CHAU
+import RadioSelectField from "./RadioSelectField"; // <-- HOLA
 import * as userService from '../services/userService.js';
 import { useSnackbar } from './Snackbar.jsx';
 import { useSession } from './Session.jsx';
@@ -24,7 +27,7 @@ export default function AltaUsuario() {
         password: '',
         nombre: '',
         email: '',
-        roles: ['cliente']
+        roles: ['cliente'] // Array inicial
     });
 
     useEffect(() => {
@@ -61,11 +64,14 @@ export default function AltaUsuario() {
                 await userService.create(data);
                 snackbar.enqueue('Usuario creado con éxito', { variant: 'success' });
             }
+            
             setTimeout(() => navigate(-1), 1000);
+
         } catch (err) {
             snackbar.enqueue('Error al guardar: ' + err.message, { variant: 'error' });
         }
     }
+
     return (
         <Form 
             title={esEdicion ? "Editar Datos" : "Nuevo Usuario"} 
@@ -108,13 +114,17 @@ export default function AltaUsuario() {
                 onChange={e => setData({...data, email: e.target.value})}
             />
 
-            {/* Selector de Roles: SOLO si soy Admin y NO es mi propio perfil */}
+            {/* Selector de Roles: Radio Button */}
             {soyAdmin && !esMiPerfil && (
-                <MultiSelectField
-                    label="Roles"
+                <RadioSelectField
+                    label="Rol Asignado"
                     name="roles"
-                    value={data.roles || []}
-                    onChange={newValue => setData({...data, roles: newValue})}
+                    // TRUCO 1: Convertimos el Array ['admin'] a String 'admin' para el componente
+                    value={data.roles?.[0] || 'cliente'}
+                    
+                    // TRUCO 2: Recibimos String 'admin' y guardamos Array ['admin'] para el backend
+                    onChange={newValue => setData({...data, roles: [newValue]})}
+                    
                     options={[
                         { label: "Administrador", value: "admin" },
                         { label: "Cliente", value: "cliente" }

@@ -64,3 +64,7 @@ export async function getJson(service, query, options) {
 export async function patchJson(service, body, options) {
     return await fetchApi(service, { ...options, body, method: 'PATCH', json: true });
 }
+
+export async function deleteJson(service, options = {}) {
+    return await fetchApi(service, { ...options, method: 'DELETE' });
+}
