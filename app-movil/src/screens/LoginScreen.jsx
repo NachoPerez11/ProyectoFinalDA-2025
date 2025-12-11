@@ -1,29 +1,57 @@
-import { useState } from 'react';
-import { TextInput, Button, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import { useSession } from '../components/Session';
-import Screen from '../components/Screen';
+import { loginAPI } from '../services/api';
 
 export default function LoginScreen() {
-    const { setIsInitiated } = useSession();
-    const [username, setUsername] = useState('');
+    const { login } = useSession();
+    const [usuario, setUsuario] = useState('');
     const [password, setPassword] = useState('');
-    async function handleLogin() {
-        try {
-            const response = await fetch('https://tu-backend.com/api/login', 
-                {method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })});
-                if (!response.ok) throw new Error('Credenciales inválidas');
-                const data = await response.json();
-                setIsInitiated(true);
-        } catch (error) {
-            Alert.alert('Error de inicio de sesión', error.message);
+
+    const handleLogin = async () => {
+        if (!usuario || !password) {
+            Alert.alert("Faltan datos", "Por favor escribí usuario y contraseña");
+            return;
         }
-    }
-    return <Screen title="Iniciar Sesión">
-        <TextInput placeholder="Usuario" value={username} onChangeText={setUsername} 
-            style={{ width: '80%', borderWidth: 1, padding: 10, marginBottom: 10}}/>
-        <TextInput placeholder="Contraseña" value={password} onChangeText={setPassword} secureTextEntry
-            style={{ width: '80%', borderWidth: 1, padding: 10, marginBottom: 20}}/>
-        <Button title="Ingresar" onPress={handleLogin} />
-    </Screen>;
+
+        try {
+            const data = await loginAPI(usuario, password);
+            login(data.user, data.token); 
+            
+        } catch (error) {
+            Alert.alert('Error', 'No se pudo conectar. Revisá la consola.');
+        }
+    };
+
+    return (
+        <View style={styles.container}>
+            <Text style={styles.title}>Agenda de Turnos</Text>
+            
+            <Text>Usuario:</Text>
+            <TextInput 
+                placeholder="Ingresa tu usuario" 
+                style={styles.input}
+                value={usuario}
+                onChangeText={setUsuario}
+                autoCapitalize="none"
+            />
+            
+            <Text>Contraseña:</Text>
+            <TextInput 
+                placeholder="Ingresa tu contraseña" 
+                style={styles.input}
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry
+            />
+
+            <Button title="Ingresar" onPress={handleLogin} />
+        </View>
+    );
 }
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center', padding: 20 },
+    title: { fontSize: 24, marginBottom: 20, textAlign: 'center', fontWeight: 'bold' },
+    input: { borderWidth: 1, borderColor: '#ccc', padding: 10, marginBottom: 15, borderRadius: 5 }
+});

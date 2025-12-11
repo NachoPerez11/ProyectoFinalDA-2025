@@ -12,7 +12,7 @@ export function servicio(app) {
         }
     });
 
-    // Obtener todos los servicios (Admin)
+    // Obtener todos los servicios
     app.get('/servicios', async (req, res, next) => {
         try {
             const servicios = await ServicioService.getAllServices();
@@ -22,7 +22,7 @@ export function servicio(app) {
         }
     });
 
-    // Obtener un servicio por su ID (Admin)
+    // Obtener un servicio por su ID 
     app.get('/servicios/:id', async (req, res, next) => {
         try {
             const {id} = req.params;

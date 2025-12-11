@@ -43,6 +43,6 @@ app.use('/api', router);
 configureMiddleware(router);
 configureDependencies();
 
-app.listen(config.port, () => {
+app.listen(config.port, '0.0.0.0', () => {
     console.log(`Servidor corriendo en http://localhost:${config.port}`);
 });
