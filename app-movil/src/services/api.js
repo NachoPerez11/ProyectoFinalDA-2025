@@ -90,3 +90,22 @@ export const crearTurnoAPI = async (token, datosTurno) => {
 
     return await response.json();
 };
+
+// Actualizar perfil de usuario
+export const updateUserAPI = async (token, userId, datosActualizados) => {
+    const response = await fetch(`${API_URL}/users/${userId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(datosActualizados),
+    });
+
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Error al actualizar perfil');
+    }
+
+    return await response.json();
+};
