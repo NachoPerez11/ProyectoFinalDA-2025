@@ -6,32 +6,35 @@ import config from '../config.js';
 export function user(app) {
 
     const checkOwnerOrAdmin = (req, res, next) => {
-        // 1. Obtener token
-        const token = req.headers['authorization'];
-        if (!token) return res.status(401).json({ message: 'Token no proporcionado' });
-        try {
-            // 2. Verificar token (quitando "Bearer ")
-            const tokenLimpio = token.replace('Bearer ', '');
-            const tokenDecodificado = jwt.verify(tokenLimpio, config.jwtKey);
-            
-            // 3. Guardamos el usuario en la request
-            req.user = tokenDecodificado; 
+        const authHeader = req.headers['authorization'];
+        if (!authHeader) return res.status(401).json({ message: 'Token no proporcionado' });
+        
+        // Limpiamos el token
+        const token = authHeader.replace('Bearer ', '').trim();
 
-            // 4. LÓGICA DE PERMISOS
-            const esAdmin = tokenDecodificado.roles.includes('admin');
+        if (!token || token === 'undefined' || token === 'null') {
+            return res.status(401).json({ message: 'Token inválido o sesión expirada' });
+        }
+
+        try {
+            const tokenDecodificado = jwt.verify(token, config.jwtKey);
+            req.user = tokenDecodificado; 
+            
+            const roles = tokenDecodificado.roles || [];
+            const esAdmin = roles.includes('admin');
             const esDuenio = tokenDecodificado.uuid === req.params.uuid;
 
             if (esAdmin || esDuenio) {
                 next();
             } else {
-                return res.status(403).json({ message: 'No tenés permiso para realizar esta acción' });
+                return res.status(403).json({ message: 'No tenés permiso' });
             }
 
-        } catch {
-            return res.status(401).json({ message: 'Token inválido' });
+        } catch (error) {
+            console.error("Error de Auth:", error.message);
+            return res.status(401).json({ message: 'Sesión inválida' });
         }
     };
-
 
     // Listar usuarios - Admin
     app.get('/users', checkForRole('admin'), async (req, res, next) => {

@@ -3,18 +3,19 @@ import { Link } from 'react-router-dom';
 
 export default function Menu() {
   const session = useSession();
+  
   return (
     <nav>
-      {/*
-      Links para crear una cuenta 
-      {!session.isLoggedIn && 
-      <>
-        <li><Link to="/registro">Registrarse</Link></li>
-      </>}
-      */}
-      
+      {/* RUTAS PARA NO LOGUEADOS (Públicas) */}
+      {!session.isLoggedIn && (
+        <>
+            <li><Link to="/login">Iniciar Sesión</Link></li>
+            <li><Link to="/registro">Registrarme</Link></li>
+        </>
+      )}
+
       {/* Links para administradores */}
-      {session.user?.roles.includes('admin') &&
+      {session.user?.roles?.includes('admin') &&
       <>
         <li><Link to="/admin/usuarios">Usuarios</Link></li>
         <li><Link to="/admin/turnos">Turnos</Link></li>
@@ -28,7 +29,7 @@ export default function Menu() {
         <li><Link to="/mi-perfil">Editar perfil</Link></li>
       </>}
       
-      {/* Links para usuarios */}
+      {/* Botón Salir */}
       {session.isLoggedIn &&
       <>      
         <li><Link to="#" onClick={() => {
@@ -43,4 +44,4 @@ export default function Menu() {
       </>}
     </nav>
   );
-} 
+}

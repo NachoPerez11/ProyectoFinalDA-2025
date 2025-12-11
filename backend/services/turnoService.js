@@ -1,24 +1,17 @@
 import { getDependency } from '../libs/dependencies.js';
-// Asumo que tienes esta excepción definida
 import { InvalidArgumentException } from '../exceptions/invalid_argument_exception.js';
 
 export class TurnoService { 
     
-    /**
-     * (Admin) Devuelve todos los turnos
-     */
+    // (Admin) Devuelve todos los turnos
     static async getAllTurnos() {
         const Turno = getDependency('TurnoModel');
-        // Usa los refs y campos en español: 'cliente' y 'servicio'
-        // Popula 'nombre' del cliente (de usuarioModel)
         return await Turno.find()
             .populate('cliente', 'nombre email') 
             .populate('servicio', 'nombre precio');
     }
 
-    /**
-     * (Cliente) Devuelve los turnos de un usuario específico
-     */
+    // (Cliente) Devuelve los turnos de un usuario específico
     static async getMisTurnos(usuarioId) {
         const Turno = getDependency('TurnoModel');
         // Busca por 'cliente' y ordena por 'fecha'
@@ -27,9 +20,7 @@ export class TurnoService {
             .sort({ fecha: 1 });
     }
 
-    /**
-     * (Cliente) Crea un nuevo turno
-     */
+    // Crea un nuevo turno
     static async createTurno(usuarioId, datosTurno) {
         const Turno = getDependency('TurnoModel');
         const Servicio = getDependency('ServicioModel');
@@ -53,18 +44,16 @@ export class TurnoService {
 
         return await turnoNuevo.save();
     }
-    
-    /**
-     * (Cliente) Cancela un turno
-     */
-    static async cancelarTurno(usuarioId, turnoId) {
+
+    // (Cliente) Editar el estado de un turno
+    static async editarTurno(turnoId, estado) {
         const Turno = getDependency('TurnoModel');
-        const turno = await Turno.findOne({ _id: turnoId, cliente: usuarioId });
+        const turno = await Turno.findOne({ _id: turnoId });
         
         if (!turno) {
-            throw new Error('Turno no encontrado o no te pertenece');
+            throw new Error('Turno no encontrado');
         }
-        turno.estado = 'Eliminado';
+        turno.estado = estado;
         return await turno.save();
     }
 }

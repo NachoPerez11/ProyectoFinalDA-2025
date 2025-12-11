@@ -1,9 +1,8 @@
-// EN: src/components/GestionServicios.jsx
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as servicioService from '../services/servicioService.js';
 import { useSnackbar } from './Snackbar.jsx';
+import Button from './Button.jsx';
 
 export default function GestionServicios() {
     const [servicios, setServicios] = useState([]);
@@ -15,13 +14,26 @@ export default function GestionServicios() {
 
     function cargarServicios() {
         servicioService.getServicios()
-            .then(data => {
-                setServicios(data);
-            })
-            .catch(err => {
-                 snackbar.enqueue(`Error al cargar servicios: ${err.message}`, { variant: 'error' });
-            });
+        .then(data => {
+            setServicios(data);
+        })
+        .catch(err => {
+            snackbar.enqueue(`Error al cargar servicios: ${err.message}`, { variant: 'error' });
+        });
     }
+
+    async function eliminarServicio(id) {
+    if (!window.confirm('¿Estás seguro de que querés eliminar este servicio?')) {
+        return;
+    }
+    try {
+        await servicioService.deleteServicio(id);
+        snackbar.enqueue('Servicio eliminado con éxito', { variant: 'success' });
+        cargarServicios(); 
+    } catch (err) {
+        snackbar.enqueue(`Error al eliminar: ${err.message}`, { variant: 'error' });
+    }
+}
 
     return (
         <div className="tabla">
@@ -48,9 +60,11 @@ export default function GestionServicios() {
                             <td>${servicio.precio}</td>
                             <td>
                                 <Link to={`/admin/servicios/${servicio._id}`}>
-                                    <button style={{ marginRight: '0.5em' }}>Editar</button>
+                                    <Button>Editar</Button>
                                 </Link>
-                                <button disabled title="Próximamente">Eliminar</button>
+                                <Button onClick={() => eliminarServicio(servicio._id)}>
+                                    Eliminar
+                                </Button>
                             </td>
                         </tr>
                     ))}

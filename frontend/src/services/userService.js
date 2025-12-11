@@ -20,6 +20,7 @@ export async function create(data) {
     return await postJson('/users', data);
 }
 
+// Elimina un usuario por su UUID
 export async function remove(uuid) {
     return await deleteJson(`/users/${uuid}`);
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import Form from "./Form";
 import TextField from "./TextField";
 import RadioSelectField from "./RadioSelectField";
@@ -9,7 +9,7 @@ import { useSession } from './Session.jsx';
 
 export default function AltaUsuario() {
     const { uuid } = useParams();
-    const location = useLocation(); 
+    const location = useLocation();
     const navigate = useNavigate();
     const snackbar = useSnackbar();
     const session = useSession();
@@ -31,39 +31,48 @@ export default function AltaUsuario() {
         if (esEdicion && uuidParaEditar) {
             userService.getByUuid(uuidParaEditar)
                 .then(fetchedData => {
-                    setData(prev => ({ ...prev, ...fetchedData }));
+                    setData(prev => ({ 
+                        ...prev,
+                        ...fetchedData,
+                        usuario: fetchedData.usuario || fetchedData.user || '' 
+                    }));
                 })
                 .catch(err => {
                     console.error(err);
                     snackbar.enqueue('Error al cargar datos: ' + err.message, { variant: 'error' });
                 });
         }
-    }, [uuidParaEditar, esEdicion]);
+    }, [uuidParaEditar, esEdicion, snackbar]);
 
     async function submit(e) {
         e.preventDefault();
         try {
             if (esEdicion) {
                 await userService.update(uuidParaEditar, {
+                    usuario: data.usuario,
                     nombre: data.nombre,
                     email: data.email,
                     roles: esMiPerfil ? undefined : data.roles 
                 });
                 
                 if (esMiPerfil) {
-                    const usuarioActualizado = { ...session.user, nombre: data.nombre, email: data.email };
-                    const token = localStorage.getItem('app_token');
-                    if (session.login) session.login(usuarioActualizado, token);
-                }
+                    const usuarioActualizado = {...session.user,
+                                                usuario: data.usuario,
+                                                nombre: data.nombre,
+                                                email: data.email };
+                    
+                    const tokenSeguro = localStorage.getItem('token') || session.token;
 
+                    if (session.login && tokenSeguro) {
+                        session.login(usuarioActualizado, tokenSeguro);
+                    }
+                }
                 snackbar.enqueue('Datos actualizados correctamente', { variant: 'success' });
             } else {
                 await userService.create(data);
                 snackbar.enqueue('Usuario creado con éxito', { variant: 'success' });
             }
-            
             setTimeout(() => navigate(-1), 1000);
-
         } catch (err) {
             snackbar.enqueue('Error al guardar: ' + err.message, { variant: 'error' });
         }
@@ -73,16 +82,16 @@ export default function AltaUsuario() {
         <Form 
             title={esEdicion ? "Editar Datos" : "Nuevo Usuario"} 
             onSubmit={submit}
-            submitLabel={esEdicion ? "Guardar Cambios" : "Crear Usuario"}
-        >
-            {(!esEdicion || soloLectura) && (
+            submitLabel={esEdicion ? "Guardar Cambios" : "Crear Usuario"}>
+
+            {esEdicion && (
                 <TextField
                     label="Nombre de Usuario"
                     name="usuario"
                     required={true}
                     value={data.usuario || ''}
                     onChange={e => setData({...data, usuario: e.target.value})}
-                    disabled={soloLectura} 
+                    disabled={ true }
                 />
             )}
 
