@@ -1,5 +1,4 @@
 import { useSession } from './Session.jsx';
-import Footer from './Footer.jsx'; 
 
 export default function Home() {
     const session = useSession();
@@ -10,7 +9,6 @@ export default function Home() {
                 <h1>¡Hola, {session.user.nombre || session.user.usuario}!</h1>
                 <h2>Menú principal</h2>
             </div>
-            <Footer />
         </>
     );
 }

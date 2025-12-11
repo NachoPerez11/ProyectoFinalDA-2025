@@ -84,17 +84,16 @@ export default function AltaUsuario() {
             onSubmit={submit}
             submitLabel={esEdicion ? "Guardar Cambios" : "Crear Usuario"}>
 
-            {esEdicion && (
-                <TextField
-                    label="Nombre de Usuario"
-                    name="usuario"
-                    required={true}
-                    value={data.usuario || ''}
-                    onChange={e => setData({...data, usuario: e.target.value})}
-                    disabled={ true }
-                />
-            )}
-
+            
+            <TextField
+                label="Nombre de Usuario"
+                name="usuario"
+                required={true}
+                value={data.usuario || ''}
+                onChange={e => setData({...data, usuario: e.target.value})}
+                disabled={esEdicion}
+            />
+            
             {!esEdicion && (
                 <TextField
                     label="Contraseña"

@@ -32,7 +32,7 @@ export default function Menu() {
       {/* Botón Salir */}
       {session.isLoggedIn &&
       <>      
-        <li><Link to="#" onClick={() => {
+        <li><Link to="/" onClick={() => {
               if(session.logout) {
                 session.logout();
               } else {
